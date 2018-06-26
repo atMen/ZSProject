@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+        <!--<include-->
+            <!--android:id="@+id/title" layout="@layout/title" />-->
+
+        <!--<in.srain.cube.views.ptr.PtrClassicFrameLayout-->
+            <!--android:layout_below="@+id/title"-->
+            <!--android:id="@+id/mPtrFrameLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true">-->
+            <customer.tcrj.com.zsproject.widget.SimpleMultiStateView
+                android:id="@+id/SimpleMultiStateView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:scrollbars="vertical"></android.support.v7.widget.RecyclerView>
+
+            </customer.tcrj.com.zsproject.widget.SimpleMultiStateView>
+
+        <!--</in.srain.cube.views.ptr.PtrClassicFrameLayout>-->
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="35dp"
+    android:layout_marginRight="35dp"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+
+
+        <LinearLayout
+            android:background="@drawable/card_bg"
+            android:id="@+id/ll_content"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:background="@color/blue"
+                android:layout_width="match_parent"
+                android:layout_height="70dp">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="生产流程"
+                    android:textSize="18sp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/white"
+                    />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:gravity="center"
+                android:textColor="@color/word_7373"
+                android:padding="5dp"
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="全部生产流程添加完毕"
+                android:textSize="15dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Button
+
+                    android:id="@+id/btn_tj"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+
+                    android:layout_height="50dp"
+                    android:background="@color/blue"
+                    android:text="提交"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_16"
+                    />
+                <Button
+                    android:id="@+id/btn_add"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:background="@color/addbg"
+                    android:text="添加"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_16"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/iv_close"
+        android:padding="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/close"
+        />
+
+
+</LinearLayout>

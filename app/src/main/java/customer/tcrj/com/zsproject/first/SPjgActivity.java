@@ -86,55 +86,58 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     protected void setView() {
         mMyOkhttp = MyApp.getInstance().getMyOkHttp();
         token = ACache.get(this).getAsString("token");
-//        initview();
+        initview();
     }
 
-//    private void initview() {
-//        txtTitle.setText("审批结果查询");
-//        layout_gg.setVisibility(View.GONE);
-//        tv_pp.setText("审批状态");
-//        tv_work_naturejob.setText("产品名称");
-//
-//
-//        mPtrFrameLayout.disableWhenHorizontalMove(true);
-//        mPtrFrameLayout.setPtrHandler(new PtrHandler() {
-//            @Override
-//            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-//
-//                if(!canPull){
-//                    return false;
-//                }
-//                return PtrDefaultHandler.checkContentCanBePulledDown(frame, mRecyclerView, header);
-//            }
-//
-//            @Override
-//            public void onRefreshBegin(PtrFrameLayout frame) {
-////                pageNum = 1;
-////                getData(pageNum);
-//
-//            }
-//        });
-//        beanList = new ArrayList<>();
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(SPjgActivity.this));
-////        mRecyclerView.setItemAnimator(new SlideInOutRightItemAnimator(mRecyclerView));
-//        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//        mRecyclerView.setAdapter(detailAdapter = new spjgAdapter(beanList, SPjgActivity.this));
-//        detailAdapter.setPreLoadNumber(1);
-//        detailAdapter.setLoadMoreView(new CustomLoadMoreView());
-//        detailAdapter.setEnableLoadMore(true);
-//        detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
-//        detailAdapter.setOnItemClickListener(this);
-//
-//        detailAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-//            @Override
-//            public void onLoadMoreRequested() {
-//                Log.e("TAG","点击重新加载数据");
+    private void initview() {
+        txtTitle.setText("审批结果查询");
+        layout_gg.setVisibility(View.GONE);
+        tv_pp.setText("审批状态");
+        tv_work_naturejob.setText("产品名称");
+
+
+        mPtrFrameLayout.disableWhenHorizontalMove(true);
+        mPtrFrameLayout.setPtrHandler(new PtrHandler() {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+
+                if(!canPull){
+                    return false;
+                }
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, mRecyclerView, header);
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+//                pageNum = 1;
+//                getData(pageNum);
+
+            }
+        });
+        beanList = new ArrayList<>();
+        for (int i=0; i<10; i++) {
+            beanList.add("测试"+i);
+        }
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(SPjgActivity.this));
+//        mRecyclerView.setItemAnimator(new SlideInOutRightItemAnimator(mRecyclerView));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(detailAdapter = new spjgAdapter(beanList, SPjgActivity.this));
+        detailAdapter.setPreLoadNumber(1);
+        detailAdapter.setLoadMoreView(new CustomLoadMoreView());
+        detailAdapter.setEnableLoadMore(true);
+        detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
+        detailAdapter.setOnItemClickListener(this);
+
+        detailAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                Log.e("TAG","点击重新加载数据");
 //                getData(1);
-//            }
-//        }, mRecyclerView);
-//
-////        showSuccess();
-//    }
+            }
+        }, mRecyclerView);
+
+        showSuccess();
+    }
 
 
     @Override

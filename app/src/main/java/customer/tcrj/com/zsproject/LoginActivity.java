@@ -48,7 +48,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void setStatusBar() {
-        StatusBarUtil.setTranslucentForImageView(this,10, null);
+        StatusBarUtil.setTranslucentForImageView(this,2, null);
     }
 
     @Override

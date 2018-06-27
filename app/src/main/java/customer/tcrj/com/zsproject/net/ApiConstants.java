@@ -10,7 +10,7 @@ public class ApiConstants {
 
 //外网  221.11.18.88  traceability
     private static final String URLROOT = "http://221.11.18.88:9999/";
-    public static final String ImageURLROOT = "http://192.168.20.51:9999/";
+    public static final String ImageURLROOT = "http://221.11.18.88:9999/";
 
     /**
      * 获取字典信息

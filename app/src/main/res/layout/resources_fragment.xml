@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
+    android:background="@color/appbg"
     >
+
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="企业资源库"
+        android:text="搜索"
         android:gravity="center_horizontal"
         android:paddingTop="25dp"
         android:paddingBottom="10dp"
@@ -19,6 +21,165 @@
         />
 
 
+
+    <customer.tcrj.com.zsproject.widget.SuperScrollView
+        android:layout_below="@+id/titleid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:background="@drawable/card_bg"
+                android:id="@+id/layout_work_naturejob"
+                style="@style/bg_item_select_50"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_10"-->
+                    <!--android:src="@mipmap/img_customer_address" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_5"
+                        android:text="名称："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/edt_cpname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="@dimen/font_size_14"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:background="@drawable/card_bg"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+
+                    style="@style/bg_item_normal_45"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_10"-->
+                    <!--android:layout_marginRight="@dimen/padding_5"-->
+                    <!--android:scaleType="fitXY"-->
+                    <!--android:src="@mipmap/img_now_plan" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="代理商录入"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_dotted_line"
+                    android:layerType="software" />
+
+                <EditText
+                    android:id="@+id/edt_today_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="请在这里进行编写"
+                    android:lineSpacingExtra="3dp"
+                    android:minLines="4"
+                    android:padding="@dimen/margin_15"
+                    android:textSize="@dimen/font_size_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+               android:layout_marginLeft="8dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:background="@drawable/card_bg"
+                    android:gravity="center"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/addicon"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+                    android:background="@drawable/card_bg"
+                    android:gravity="center"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/addsp"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+    </customer.tcrj.com.zsproject.widget.SuperScrollView>
 
 
 </LinearLayout>

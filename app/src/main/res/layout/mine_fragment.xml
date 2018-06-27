@@ -15,7 +15,7 @@
             android:id="@+id/icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/blue"
+            android:background="@drawable/bg_first"
             />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="账号：atMen"
             android:gravity="center_horizontal"
-            android:textSize="@dimen/font_size_18"
+            android:textSize="@dimen/font_size_14"
             android:textColor="@color/white"
             />
 

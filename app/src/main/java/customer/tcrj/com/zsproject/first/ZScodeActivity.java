@@ -150,7 +150,11 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
                     String s = selectDatas.get(i);
                     str += s;
                 }
-                Toast.makeText(this, "选择了："+str, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "选择了："+str, Toast.LENGTH_SHORT).show();
+
+T("提交成功");
+
+
                 break;
             case R.id.btnback:
                 finish();

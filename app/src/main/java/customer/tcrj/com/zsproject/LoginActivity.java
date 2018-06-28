@@ -42,8 +42,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void setView() {
         mMyOkhttp = MyApp.getInstance().getMyOkHttp();
-
-
     }
 
     @Override

@@ -11,19 +11,17 @@
     <include layout="@layout/title"/>
 
     <customer.tcrj.com.zsproject.widget.SuperScrollView
-        android:layout_margin="15dp"
-        android:background="@drawable/card_bg"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:padding="15dp"
+            android:padding="10dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <RelativeLayout
-
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -39,6 +37,7 @@
                     />
 
                 <TextView
+                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:id="@+id/cptime"
                     android:textSize="15sp"
@@ -293,22 +292,22 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:paddingBottom="10dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <TextView
+
+                <WebView
                     android:id="@+id/tv10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/font_size_16"
-                    android:text=""
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="@dimen/font_size_16"-->
+                    <!--android:text=""-->
+                    <!--/>-->
 
 
-            </LinearLayout>
+
 
 
         </LinearLayout>

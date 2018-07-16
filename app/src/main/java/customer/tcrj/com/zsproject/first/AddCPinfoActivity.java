@@ -86,7 +86,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
 
     @Override
     protected void setView() {
-
         txtTitle.setText("产品信息录入");
         initPic();
     }

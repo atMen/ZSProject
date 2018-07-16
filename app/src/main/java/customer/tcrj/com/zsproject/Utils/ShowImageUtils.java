@@ -36,8 +36,6 @@ public class ShowImageUtils {
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .apply(options)
                 .into(imgeview);
-
-
     }
 
 }

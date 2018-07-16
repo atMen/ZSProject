@@ -2,6 +2,8 @@ package customer.tcrj.com.zsproject.first;
 
 
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +37,7 @@ public class CPListInfoActivity extends BaseActivity implements View.OnClickList
     @BindView(R.id.tv09)
     TextView tv09;
     @BindView(R.id.tv10)
-    TextView tv10;
+    WebView webView;
 
     @BindView(R.id.txtTitle)
     TextView txtTitle;
@@ -52,6 +54,8 @@ public class CPListInfoActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void setView() {
         txtTitle.setText("产品详情信息");
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         btnback.setOnClickListener(this);
     }
 
@@ -70,7 +74,8 @@ public class CPListInfoActivity extends BaseActivity implements View.OnClickList
         tv07.setText(cpinfo.getZsfs());
         tv08.setText(cpinfo.getZsywlb());
         tv09.setText(cpinfo.getEwmsl());
-        tv10.setText(cpinfo.getCpms());
+
+        webView.loadData(cpinfo.getCpms(), "text/html; charset=UTF-8", null);
     }
 
     @Override

@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -29,7 +31,7 @@ public class sclcAdapter extends BaseQuickAdapter<cpSCLCinfo.DataBean.ContentBea
 
 
     public sclcAdapter(@Nullable List<cpSCLCinfo.DataBean.ContentBean> data, Context context, RecyclerView mRecyclerView) {
-        super(R.layout.simple_item, data);
+        super(R.layout.sclc_item, data);
         this.mContext = context;
         this.mRecyclerView = mRecyclerView;
     }
@@ -37,12 +39,15 @@ public class sclcAdapter extends BaseQuickAdapter<cpSCLCinfo.DataBean.ContentBea
 
     @Override
     protected void convert(final BaseViewHolder helper, final cpSCLCinfo.DataBean.ContentBean item) {
-        helper.setText(R.id.simple_content, item.getDescription());
         helper.setText(R.id.cpname, "名称："+item.getName());
 
+        WebView webView = helper.getView(R.id.simple_content);
         TextView remo = helper.getView(R.id.simple_remo);
         TextView xg = helper.getView(R.id.simple_xg);
 
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+        webView.loadData(item.getDescription(), "text/html; charset=UTF-8", null);
 
         xg.setOnClickListener(new View.OnClickListener() {
             @Override

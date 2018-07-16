@@ -6,6 +6,7 @@
     android:layout_marginRight="35dp"
     android:orientation="vertical"
     android:gravity="center"
+
     >
 
 
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:background="@color/blue"
+            android:background="@drawable/bg_dialog"
             android:layout_width="match_parent"
             android:layout_height="70dp">
 
@@ -37,7 +38,7 @@
 
 
         <TextView
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:textColor="@color/black"
             android:padding="5dp"
@@ -51,7 +52,7 @@
         <EditText
             android:layout_gravity="center"
             android:padding="15dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:id="@+id/edt_work_datetime"
@@ -70,7 +71,7 @@
                 android:id="@+id/btn_tj"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@color/blue"
+                android:background="@drawable/btn_dialog"
                 android:text="提交"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_16"

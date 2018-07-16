@@ -109,7 +109,7 @@ public class LoginActivity extends BaseActivity {
                         hideLoadingDialog();
                         T(response.getMessage());
                         Log.e("TAG","getErrorcode:"+response.getErrorcode());
-                        if(response.getErrorcode().equals("9999")){
+                        if("9999".equals(response.getErrorcode())){
                             Log.e("TAG","成功");
                             ToCache(response.getData());
                             toClass(LoginActivity.this,MainActivity.class);

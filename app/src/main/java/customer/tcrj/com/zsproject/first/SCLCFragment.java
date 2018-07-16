@@ -285,11 +285,6 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
         getData(1);
     }
 
-
-
-
-
-
     @OnClick({R.id.btn_add,R.id.btn_tj})
     public void onClick(View v) {
         switch (v.getId()){

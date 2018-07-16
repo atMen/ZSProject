@@ -32,10 +32,6 @@ public class FirstFragment extends BaseFragment {
     @BindView(R.id.ll_spjg)
     LinearLayout ll_spjg;
 
-
-
-
-
     @Override
     protected int setLayout() {
         return R.layout.first_fragment;
@@ -43,14 +39,10 @@ public class FirstFragment extends BaseFragment {
 
     @Override
     protected void setView() {
-//        StatusBarUtil.setTranslucentForImageView(getActivity(),20,icon);
     }
-
 
     @Override
     protected void setData() {
-
-
     }
 
     @OnClick({R.id.ll_cpxx,R.id.ll_cxlc,R.id.ll_zsmsq,R.id.ll_spjg})
@@ -75,11 +67,11 @@ public class FirstFragment extends BaseFragment {
             case R.id.ll_spjg:
                 toClass(mContext,SPjgActivity.class);//审批结果查询
                 break;
+            default:
+                break;
 
         }
     }
-
-
 
 //    @Override
 //    public void onClick(View v) {

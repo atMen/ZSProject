@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:background="@color/appbg"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+
+            <in.srain.cube.views.ptr.PtrClassicFrameLayout
+                android:id="@+id/mPtrFrameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true">
+
+                <customer.tcrj.com.zsproject.widget.SimpleMultiStateView
+                    android:id="@+id/SimpleMultiStateView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_centerHorizontal="true"
+                        android:scrollbars="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    </android.support.v7.widget.RecyclerView>
+
+                </customer.tcrj.com.zsproject.widget.SimpleMultiStateView>
+
+            </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_tj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18"
+            />
+
+
+
+</LinearLayout>

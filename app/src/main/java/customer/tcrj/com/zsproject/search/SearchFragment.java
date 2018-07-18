@@ -99,7 +99,7 @@ public class SearchFragment extends BaseFragment implements BaseQuickAdapter.OnI
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.setAdapter(detailAdapter = new cpInfoAdapter(beanList, mContext));
-        detailAdapter.setPreLoadNumber(1);
+//        detailAdapter.setPreLoadNumber(1);
         detailAdapter.setLoadMoreView(new CustomLoadMoreView());
         detailAdapter.setEnableLoadMore(true);
         detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
@@ -121,7 +121,7 @@ public class SearchFragment extends BaseFragment implements BaseQuickAdapter.OnI
 
         try {
             jsonObject.put("page", num+"");
-            jsonObject.put("size", "10");
+            jsonObject.put("size", "30");
             jsonObject.put("token", token);
             jsonObject.put("cpmc", s);
         } catch (JSONException e) {

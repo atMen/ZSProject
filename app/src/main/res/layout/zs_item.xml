@@ -72,24 +72,112 @@
 
 
     <TextView
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textSize="16sp"
-        android:id="@+id/simple_text"
+        android:id="@+id/bh"
         android:layout_width="match_parent"
         android:textColor="@color/black"
-        android:text="描述："
+        android:text="编号：123321"
         android:layout_height="wrap_content"
         />
 
-    <TextView
-        android:layout_marginTop="3dp"
-        android:textSize="16sp"
-        android:id="@+id/simple_content"
+    <!--<TextView-->
+        <!--android:layout_marginTop="3dp"-->
+        <!--android:textSize="16sp"-->
+        <!--android:id="@+id/simple_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:text="这是盎司和低俗会否身份证普这是是我诸多好评是组是获批租的号是放屁租房的获批符合次答复"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:lineSpacingExtra="5dp"-->
+        <!--/>-->
+
+    <LinearLayout
+        android:paddingBottom="15dp"
+        android:paddingTop="20dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:text="这是盎司和低俗会否身份证普这是是我诸多好评是组是获批租的号是放屁租房的获批符合次答复"
-        android:layout_height="wrap_content"
-        android:lineSpacingExtra="5dp"
-        />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:text="品牌"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:id="@+id/spjg_pp"
+                android:layout_width="wrap_content"
+                android:textColor="@color/login_textcolor"
+                android:text="红富士"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:text="规格"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:id="@+id/gg"
+                android:layout_width="wrap_content"
+                android:textColor="@color/login_textcolor"
+                android:text="20kg"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:text="数量"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:id="@+id/simple_text"
+                android:layout_width="wrap_content"
+                android:textColor="@color/login_textcolor"
+                android:text="100份"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 
     <RelativeLayout
@@ -110,13 +198,13 @@
 
 
         <TextView
+            android:layout_marginRight="8dp"
             android:layout_alignParentRight="true"
-            android:textSize="16sp"
             android:id="@+id/simple_remo"
             android:layout_width="wrap_content"
             android:textColor="@color/black"
-            android:text="修改"
             android:layout_height="wrap_content"
+            android:background="@drawable/xg"
             />
 
 

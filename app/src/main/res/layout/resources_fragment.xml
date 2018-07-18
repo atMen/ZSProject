@@ -107,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:text="代理商录入"
+                        android:text="代理商描述"
                         android:textSize="@dimen/font_size_16" />
                 </LinearLayout>
 
@@ -154,21 +154,30 @@
                         />
 
                 </LinearLayout>
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/sp_media"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/card_bg"
                     android:gravity="center"
                     android:layout_width="80dp"
                     android:layout_height="80dp">
 
-                    <TextView
+                    <ImageView
+                        android:id="@+id/iv_video_screenshot"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerInParent="true"
+                        android:scaleType="fitXY" />
 
+                    <ImageView
+                        android:id="@+id/iv_btn"
+                        android:layout_centerInParent="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/addsp"
+                        android:background="@mipmap/video_03"
                         />
 
-                </LinearLayout>
+                </RelativeLayout>
 
 
             </LinearLayout>

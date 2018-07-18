@@ -59,7 +59,7 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
     private zssqAdapter detailAdapter;
 
     private View inflate;
-    private String citys[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
+    private String citys[] = {"不限", "名称", "名称", "名称", "名称", "名称", "名称", "名称", "名称", "名称", "名称", "名称"};
     private String headers[] = {"名称", "品牌", "规格"};
     private List<View> popupViews = new ArrayList<>();
     private ListDropDownAdapter ageAdapter;
@@ -162,7 +162,7 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
         });
         beanList = new ArrayList<>();
         for (int i=0; i<10; i++) {
-            beanList.add("测试"+i);
+            beanList.add(""+i);
         }
         mRecyclerView.setLayoutManager(new LinearLayoutManager(ZScodeActivity.this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -59,7 +59,7 @@ public class zssqAdapter extends BaseQuickAdapter<String, BaseViewHolder>{
     @Override
     protected void convert(final BaseViewHolder helper, String item) {
         Log.e("TAG","item:"+item);
-        helper.setText(R.id.simple_text, "描述："+item);
+        helper.setText(R.id.simple_text, item+"份");
         TextView remo = helper.getView(R.id.simple_remo);
         CheckBox view = helper.getView(R.id.checkbox);
         int size = isSelected.size();

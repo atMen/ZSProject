@@ -283,8 +283,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         }
     }
 
-
-
     /**
      * EditText竖直方向是否可以滚动
      * @param editText  需要判断的EditText

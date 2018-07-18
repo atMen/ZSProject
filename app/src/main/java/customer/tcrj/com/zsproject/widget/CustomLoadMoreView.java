@@ -36,6 +36,8 @@ public final class CustomLoadMoreView extends LoadMoreView {
         return R.id.load_more_load_fail_view;
     }
 
+
+
     /**
      * IsLoadEndGone () for true, you can return 0
      * IsLoadEndGone () for false, can not return 0

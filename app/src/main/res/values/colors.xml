@@ -22,5 +22,7 @@
     <color name="float_transparent">#00000000</color>
     <color name="crm_word">#3c3c3c</color>
     <color name="crm_bg">#f7f7f7</color>
+    <color name="btn_bg">#e9e9e9</color>
+
 
 </resources>

@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
@@ -24,6 +27,9 @@ import customer.tcrj.com.zsproject.LoginActivity;
 
 public class Utils {
     public static int pageSize = 10;
+
+
+
 
     /**
      * 对于一个没有被载入或者想要动态载入的界面, 都需要使用inflate来载入

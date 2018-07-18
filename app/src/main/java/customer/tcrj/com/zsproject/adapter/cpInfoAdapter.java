@@ -35,15 +35,20 @@ public class cpInfoAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean,
     protected void convert(final BaseViewHolder helper, cpInfo.DataBean.ContentBean item) {
 
         helper.setText(R.id.cpname, "产品名称："+item.getCpmc());
-        helper.setText(R.id.cptime, item.getTimestamp());
+
+        String timestamp = item.getTimestamp();
+        String substring = "";
+        if(timestamp != null){substring = timestamp.substring(0, 10);}
+
+        helper.setText(R.id.cptime, substring);
         helper.setText(R.id.name, "产品品牌："+item.getCppp());
         helper.setText(R.id.sex, "产品标称规格："+item.getCpbcgg());
         helper.setText(R.id.duty, "产品标称规格单位："+item.getCpbcggdw());
 
 
-        ShowImageUtils.showImageView(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
+//        ShowImageUtils.showImageView(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
+        ShowImageUtils.LoadImage(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
 
-//      TextView name = helper.getView(R.id.name);
 
 
     }

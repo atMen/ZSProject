@@ -204,6 +204,16 @@ public class cpInfo implements Serializable{
             private String zsfs;
             private String zsywlb;
 
+            public boolean isselect() {
+                return isselect;
+            }
+
+            public void setIsselect(boolean isselect) {
+                this.isselect = isselect;
+            }
+
+            private boolean isselect;
+
             public String getBaseId() {
                 return baseId;
             }

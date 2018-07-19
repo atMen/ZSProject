@@ -31,6 +31,11 @@
         </activity>
 
         <activity
+            android:name=".mine.MdifyPswActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".Media.VideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />

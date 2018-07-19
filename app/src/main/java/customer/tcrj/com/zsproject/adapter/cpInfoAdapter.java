@@ -46,7 +46,7 @@ public class cpInfoAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean,
         helper.setText(R.id.duty, "产品标称规格单位："+item.getCpbcggdw());
 
 
-//        ShowImageUtils.showImageView(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
+//      ShowImageUtils.showImageView(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
         ShowImageUtils.LoadImage(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
 
 

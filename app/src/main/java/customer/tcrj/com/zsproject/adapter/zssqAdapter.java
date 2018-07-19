@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import customer.tcrj.com.zsproject.R;
+import customer.tcrj.com.zsproject.bean.cpInfo;
 
 
 /**
@@ -22,55 +23,37 @@ import customer.tcrj.com.zsproject.R;
  * author: Will .
  * date: 2017/9/27 .
  */
-public class zssqAdapter extends BaseQuickAdapter<String, BaseViewHolder>{
+public class zssqAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, BaseViewHolder>{
 
     public static final int LAST_POSITION = -1;
     private Context mContext;
     private RecyclerView mRecyclerView;
-    public static HashMap<Integer, Boolean> isSelected;
-    private List<String> datas;
 
 
-    public zssqAdapter(@Nullable List<String> data, Context context, RecyclerView mRecyclerView) {
+    public zssqAdapter(@Nullable List<cpInfo.DataBean.ContentBean> data, Context context, RecyclerView mRecyclerView) {
         super(R.layout.zs_item, data);
         this.mContext = context;
         this.mRecyclerView = mRecyclerView;
-        this.datas = data;
-        init();
     }
 
-    // 初始化 设置所有item都为未选择
-    public void init() {
-        isSelected = new HashMap<Integer, Boolean>();
-        for (int i = 0; i < mData.size(); i++) {
-            isSelected.put(i, false);
-        }
-    }
 
-    private OnItemClickLitener mOnItemClickLitener;
 
-    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener)
-    {
-        this.mOnItemClickLitener = mOnItemClickLitener;
-    }
 
 
 
     @Override
-    protected void convert(final BaseViewHolder helper, String item) {
+    protected void convert(final BaseViewHolder helper, cpInfo.DataBean.ContentBean item) {
         Log.e("TAG","item:"+item);
-        helper.setText(R.id.simple_text, item+"份");
+        helper.setText(R.id.cpname, "产品名称："+item.getCpmc());
+        helper.setText(R.id.bh, "编号："+item.getBzbh());
+        helper.setText(R.id.spjg_pp, item.getCppp());
+        helper.setText(R.id.gg, item.getCpbcgg());
+        helper.setText(R.id.simple_text, item.getEwmsl()+"份");
         TextView remo = helper.getView(R.id.simple_remo);
         CheckBox view = helper.getView(R.id.checkbox);
-        int size = isSelected.size();
-        if(size > 0){
-            view.setChecked(isSelected.get(helper.getPosition()));
-        }else {
-            view.setChecked(false);
-        }
 
-        Log.e("TAG","isSelected.get(helper.getPosition()):"+isSelected.get(helper.getPosition()));
-//        helper.getConvertView().setSelected(false);
+        view.setChecked(item.isselect());
+
 
         if (mOnItemClickLitener != null)
         {
@@ -105,35 +88,21 @@ public class zssqAdapter extends BaseQuickAdapter<String, BaseViewHolder>{
 
     }
 
-    @Override
-    public int getItemCount() {
-        return mData.size();
-    }
+//    @Override
+//    public int getItemCount() {
+//        return mData.size();
+//    }
 
 
     public void updata(String s,int position) {
-        String s1 = mData.get(position);
+        cpInfo.DataBean.ContentBean s1 = mData.get(position);
+
+        s1.setEwmsl(s);
         Log.e("TAG","s1:"+s1);
         Log.e("TAG","s:"+s);
-        mData.set(position,s);
+        mData.set(position,s1);
 //        notifyItemInserted(position);
         notifyItemRangeChanged(position,1);
-    }
-
-    public void add(String s,int position) {
-
-        Log.e("add","s:"+s);
-        position = position == LAST_POSITION ? getItemCount()  : position;
-        mData.add(position,s);
-
-        notifyItemInserted(position);
-
-//        notifyItemRangeInserted(position,1);
-//        mRecyclerView.smoothScrollToPosition(position);
-
-
-        //如果在第一项添加模拟数据需要调用 scrollToPosition（0）把列表移动到顶端（可选）
-        mRecyclerView.scrollToPosition(position);
     }
 
 
@@ -146,6 +115,14 @@ public class zssqAdapter extends BaseQuickAdapter<String, BaseViewHolder>{
 
     public void setOnItemUpdataClickListener(OnItemClickListener onItemClickListener) {   //实现点击
         this.onItemClickListener = onItemClickListener;
+    }
+
+
+    private OnItemClickLitener mOnItemClickLitener;
+
+    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener)
+    {
+        this.mOnItemClickLitener = mOnItemClickLitener;
     }
 
 

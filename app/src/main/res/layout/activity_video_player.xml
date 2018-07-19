@@ -19,7 +19,7 @@
         <customer.tcrj.com.zsproject.Media.MyVideoView
             android:id="@+id/vv_view"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="450dp"
             android:layout_centerInParent="true" />
 
         <ImageView

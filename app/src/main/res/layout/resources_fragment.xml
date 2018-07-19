@@ -154,30 +154,54 @@
                         />
 
                 </LinearLayout>
-                <RelativeLayout
-                    android:id="@+id/sp_media"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/card_bg"
-                    android:gravity="center"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp">
 
-                    <ImageView
-                        android:id="@+id/iv_video_screenshot"
+
+
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/sp_media"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/card_bg"
+                        android:gravity="center"
                         android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitXY" />
+                        android:layout_height="80dp">
+
+
+
+
+                        <ImageView
+                            android:id="@+id/iv_video_screenshot"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerInParent="true"
+                            android:scaleType="fitXY" />
+
+                        <ImageView
+                            android:id="@+id/iv_btn"
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@mipmap/video_03"
+                            />
+
+                    </RelativeLayout>
 
                     <ImageView
-                        android:id="@+id/iv_btn"
-                        android:layout_centerInParent="true"
+
+                        android:id="@+id/delete"
+                        android:visibility="gone"
+                        android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/video_03"
                         />
 
-                </RelativeLayout>
+                </FrameLayout>
+
 
 
             </LinearLayout>

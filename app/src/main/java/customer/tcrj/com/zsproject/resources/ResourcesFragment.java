@@ -15,6 +15,7 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import customer.tcrj.com.zsproject.Media.MediaUtils;
 import customer.tcrj.com.zsproject.Media.Utils;
 import customer.tcrj.com.zsproject.Media.VideoPlayerActivity;
 import customer.tcrj.com.zsproject.Media.VideoRecorderActivity;
@@ -37,6 +38,11 @@ public class ResourcesFragment extends BaseFragment {
     @BindView(R.id.iv_btn)
     ImageView iv_btn;
 
+    @BindView(R.id.delete)
+    ImageView delete;
+
+
+
     private int REQUESTCODE = 100;
 
     @Override
@@ -55,7 +61,7 @@ public class ResourcesFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.iv_video_screenshot,R.id.iv_btn})
+    @OnClick({R.id.iv_video_screenshot,R.id.iv_btn,R.id.delete})
     public void onClick(View v) {
 
         switch (v.getId()){
@@ -64,21 +70,39 @@ public class ResourcesFragment extends BaseFragment {
 
                 if(path != null){
 
+
                     Bundle bundle = new Bundle();
                     bundle.putString("path",path);
                     toClass(mContext,VideoPlayerActivity.class,bundle);
 
                 }else {
+
                     //视频录制
                     toClass(mContext,VideoRecorderActivity.class,null,REQUESTCODE);
                 }
 
                 break;
 
+            case R.id.delete:
+                path = null;
+                delete.setVisibility(View.GONE);
+                iv_video_screenshot.setImageBitmap(null);
+                deleteFile();
+                break;
+
             default:
                 break;
         }
 
+    }
+
+    private void deleteFile() {
+        if (!TextUtils.isEmpty(path)) {
+            File file = new File(path);
+            if (file != null && file.exists()) {
+                file.delete();
+            }
+        }
     }
 
     @Override
@@ -100,6 +124,7 @@ public class ResourcesFragment extends BaseFragment {
     private void setImage(String videoUri){
         if (!TextUtils.isEmpty(videoUri)) {
 
+            delete.setVisibility(View.VISIBLE);
             try {
                 String s = Utils.encodeBase64File(videoUri);
                 Log.e("TAG","SPbase64:"+s);

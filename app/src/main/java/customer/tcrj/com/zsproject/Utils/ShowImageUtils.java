@@ -42,7 +42,7 @@ public class ShowImageUtils {
 
     /**
      * 常规使用
-     *
+     *.transition(new DrawableTransitionOptions().crossFade(800))
      * @param context   上下文
      * @param url       图片链接
      * @param imageView 目标view
@@ -50,9 +50,11 @@ public class ShowImageUtils {
     public static void LoadImage(Context context, Object url, ImageView imageView) {
         Glide.with(context).load(url)
                 .apply(new RequestOptions()
+                        .placeholder(R.drawable.ic_placeholder)
+                        .error(R.drawable.ic_placeholder)
                         .centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.ALL))
-                .transition(new DrawableTransitionOptions().crossFade(800))
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(imageView);
     }
 

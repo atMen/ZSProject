@@ -14,6 +14,11 @@ public class ApiConstants {
 
 
     /**
+     * 修改密码
+     */
+    public static final String mdifypswApi = URLROOT+"personRest/updatePassword";
+
+    /**
      * 获取字典信息
      */
     public static final String zdlistinfoApi = URLROOT+"dictionaryRest/findByParentId";

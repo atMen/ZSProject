@@ -36,18 +36,21 @@
 
                     />
 
-                <TextView
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:id="@+id/cptime"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2018-06-18"
-
-                    />
 
             </RelativeLayout>
+
+            <TextView
+                android:layout_marginTop="3dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/cptime"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2018-06-18"
+
+                />
+
 
             <View
                 android:layout_marginTop="10dp"
@@ -293,18 +296,19 @@
             </LinearLayout>
 
 
+            <org.sufficientlysecure.htmltextview.HtmlTextView
+                android:id="@+id/html_text"
+                android:textSize="@dimen/font_size_16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="@android:style/TextAppearance.Small" />
 
-                <WebView
-                    android:id="@+id/tv10"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="@dimen/font_size_16"-->
-                    <!--android:text=""-->
+                <!--<WebView-->
+                    <!--android:id="@+id/tv10"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
                     <!--/>-->
+
 
 
 

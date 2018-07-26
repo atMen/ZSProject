@@ -59,7 +59,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/padding_5"
                         android:text="名称："
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_16" />
@@ -107,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
-                        android:text="代理商描述"
+                        android:text="描述"
                         android:textSize="@dimen/font_size_16" />
                 </LinearLayout>
 
@@ -141,6 +140,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:background="@drawable/card_bg"
                     android:gravity="center"
                     android:layout_width="80dp"
@@ -164,7 +164,8 @@
 
                     <RelativeLayout
                         android:id="@+id/sp_media"
-                        android:layout_margin="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
                         android:background="@drawable/card_bg"
                         android:gravity="center"
                         android:layout_width="80dp"
@@ -191,13 +192,12 @@
                     </RelativeLayout>
 
                     <ImageView
-
                         android:id="@+id/delete"
                         android:visibility="gone"
                         android:layout_gravity="end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/video_03"
+                        android:background="@drawable/delet_zhaopian_1x"
                         />
 
                 </FrameLayout>
@@ -207,7 +207,17 @@
             </LinearLayout>
 
 
-
+            <Button
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/btn_true"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_btn_background"
+                android:text="提交"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
 
 
 

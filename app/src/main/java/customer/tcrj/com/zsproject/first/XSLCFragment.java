@@ -100,14 +100,21 @@ public class XSLCFragment extends BaseFragment {
 
 
     private void setdata() {
+
         for (int i = 0; i < 2; i++) {
             DataInfo info = new DataInfo();
-            info.itemTitle = "group" + i;
+            if(i == 0){
+                info.itemTitle = "代理商管理";
+            }else {
+                info.itemTitle = "销售渠道管理";
+            }
+
             pList.add(info);
         }
+
         for (DataInfo dataInfo : pList) {
             List<DataInfo> chList = new ArrayList<>();
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 5; i++) {
                 DataInfo info = new DataInfo();
                 info.itemTitle = "child" + i;
                 info.childItemId = dataInfo.itemTitle + "child" + i;

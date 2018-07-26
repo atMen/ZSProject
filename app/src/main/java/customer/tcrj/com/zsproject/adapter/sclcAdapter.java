@@ -12,6 +12,9 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
+import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
+import org.sufficientlysecure.htmltextview.HtmlTextView;
+
 import java.util.List;
 
 import customer.tcrj.com.zsproject.R;
@@ -41,13 +44,22 @@ public class sclcAdapter extends BaseQuickAdapter<cpSCLCinfo.DataBean.ContentBea
     protected void convert(final BaseViewHolder helper, final cpSCLCinfo.DataBean.ContentBean item) {
         helper.setText(R.id.cpname, "名称："+item.getName());
 
-        WebView webView = helper.getView(R.id.simple_content);
+
         TextView remo = helper.getView(R.id.simple_remo);
         TextView xg = helper.getView(R.id.simple_xg);
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        webView.loadData(item.getDescription(), "text/html; charset=UTF-8", null);
+        Log.e("TAG","html:"+item.getDescription());
+        HtmlTextView htmlTextView = helper.getView(R.id.html_text);
+        htmlTextView.setHtml(item.getDescription(),
+                new HtmlHttpImageGetter(htmlTextView));
+
+        //        WebView webView = helper.getView(R.id.simple_content);
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+//        webView.loadData(item.getDescription(), "text/html; charset=UTF-8", null);
+
+
+
 
         xg.setOnClickListener(new View.OnClickListener() {
             @Override

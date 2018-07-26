@@ -583,7 +583,6 @@
                     android:hint="请填写产品描述"
                     android:lineSpacingExtra="3dp"
                     android:minLines="4"
-                    android:maxHeight="230dp"
                     android:padding="@dimen/margin_10"
                     android:textSize="@dimen/font_size_14" />
 

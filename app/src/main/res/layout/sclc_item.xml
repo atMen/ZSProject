@@ -5,16 +5,16 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
     app:cardBackgroundColor="@color/white"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="5dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    app:contentPadding="10dp">
+    app:contentPadding="5dp">
 
     <LinearLayout
               android:orientation="vertical"
@@ -71,13 +71,17 @@
         android:layout_height="wrap_content"
         />
 
-    <WebView
-        android:layout_marginTop="3dp"
-        android:id="@+id/simple_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
+    <!--<WebView-->
+        <!--android:layout_marginTop="3dp"-->
+        <!--android:id="@+id/simple_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--/>-->
+        <org.sufficientlysecure.htmltextview.HtmlTextView
+            android:id="@+id/html_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="@android:style/TextAppearance.Small" />
 
     <View
         android:layout_marginTop="15dp"
@@ -88,7 +92,7 @@
 
 
     <RelativeLayout
-        android:paddingTop="8dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -104,7 +108,7 @@
         <TextView
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:id="@+id/simple_remo"
             android:layout_width="wrap_content"
             android:textColor="@color/black"
@@ -119,7 +123,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/simple_remo"
-            android:textSize="16sp"
+            android:textSize="13sp"
             android:id="@+id/simple_xg"
             android:layout_width="wrap_content"
             android:textColor="@color/black"

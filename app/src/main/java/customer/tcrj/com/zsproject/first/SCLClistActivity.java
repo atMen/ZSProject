@@ -104,7 +104,7 @@ public class SCLClistActivity extends BaseActivity implements View.OnClickListen
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(detailAdapter = new cpInfoAdapter(beanList, this));
-        detailAdapter.setPreLoadNumber(1);
+//        detailAdapter.setPreLoadNumber(1);
         detailAdapter.setLoadMoreView(new CustomLoadMoreView());
         detailAdapter.setEnableLoadMore(true);
         detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
@@ -126,7 +126,7 @@ public class SCLClistActivity extends BaseActivity implements View.OnClickListen
 
         try {
             jsonObject.put("page", num+"");
-            jsonObject.put("size", "10");
+            jsonObject.put("size", "30");
             jsonObject.put("token", token);
         } catch (JSONException e) {
             e.printStackTrace();

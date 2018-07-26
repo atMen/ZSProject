@@ -102,7 +102,7 @@ public class CPinfoActivity extends BaseActivity implements View.OnClickListener
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(detailAdapter = new cpInfoAdapter(beanList, this));
-//        detailAdapter.setPreLoadNumber(1);
+//      detailAdapter.setPreLoadNumber(1);
         detailAdapter.setLoadMoreView(new CustomLoadMoreView());
         detailAdapter.setEnableLoadMore(true);
         detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
@@ -190,9 +190,7 @@ public class CPinfoActivity extends BaseActivity implements View.OnClickListener
                 detailAdapter.addData(content);
                 detailAdapter.loadMoreComplete();
             }
-
         }
-
     }
 
     //下拉刷新

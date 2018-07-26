@@ -16,6 +16,12 @@ public class ApiConstants {
     /**
      * 修改密码
      */
+    public static final String uploadfileApi = URLROOT+"companyRest/addCompanyResource";
+
+
+    /**
+     * 修改密码
+     */
     public static final String mdifypswApi = URLROOT+"personRest/updatePassword";
 
     /**

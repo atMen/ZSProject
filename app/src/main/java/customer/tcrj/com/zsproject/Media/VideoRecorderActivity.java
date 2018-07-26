@@ -259,11 +259,11 @@ public class VideoRecorderActivity extends AppCompatActivity {
             Log.e("TAG","path:"+path);
             Intent intent = new Intent();
             intent.putExtra("path", path); //将值回传回去
-            setResult(2, intent);
+            setResult(RESULT_OK, intent);
             finish(); //结束当前的activity的生命周期
 //            send.stopAnim();
 //            recordLayout.setVisibility(View.VISIBLE);
-            finish();
+//            finish();
         }
     };
 

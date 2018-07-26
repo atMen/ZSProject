@@ -20,8 +20,9 @@
 
         <TextView
             android:id="@+id/tv_sclc"
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="生产流程"
             android:textSize="20sp"
@@ -31,8 +32,9 @@
 
         <TextView
             android:id="@+id/tv_xslc"
-
-            android:layout_width="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="销售流程"
             android:textSize="20sp"

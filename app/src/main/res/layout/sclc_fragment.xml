@@ -66,6 +66,7 @@
 
         <Button
 
+            android:visibility="gone"
             android:id="@+id/btn_tj"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -81,9 +82,9 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:background="@color/addbg"
+            android:background="@color/blue"
             android:text="添加"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/font_size_16"
              />
 

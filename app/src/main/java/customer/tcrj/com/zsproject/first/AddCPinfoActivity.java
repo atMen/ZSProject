@@ -28,6 +28,7 @@ import customer.tcrj.com.zsproject.MainActivity;
 import customer.tcrj.com.zsproject.R;
 import customer.tcrj.com.zsproject.adapter.GridImageAdapter;
 import customer.tcrj.com.zsproject.base.BaseActivity;
+import customer.tcrj.com.zsproject.bean.cpInfo;
 import customer.tcrj.com.zsproject.dialog.DialogLeaveApply;
 import customer.tcrj.com.zsproject.widget.FullyGridLayoutManager;
 
@@ -79,6 +80,8 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     @BindView(R.id.btn_submit)
     Button btn_submit;
 
+    cpInfo.DataBean.ContentBean cpinfo;
+
     @Override
     protected int setLayout() {
         return R.layout.activity_add_cpinfo;
@@ -129,12 +132,23 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
 
     @Override
     protected void setData() {
-
+        cpinfo = (cpInfo.DataBean.ContentBean) getIntent().getSerializableExtra("cpinfo");
+        if(cpinfo != null){
+            btn_submit.setText("保存");
+            recycler.setVisibility(View.GONE);
+            edt_cpname.setHint(cpinfo.getCpmc());
+            edt_cppp.setHint(cpinfo.getCppp());
+            edt_cpbcgg.setHint(cpinfo.getCpbcgg());
+            edt_cpbcggdw.setHint(cpinfo.getCpbcggdw());
+            edt_cpbzq.setHint(cpinfo.getBxq());
+            edt_ewmdynum.setHint(cpinfo.getEwmsl());
+            edt_cpms.setText(cpinfo.getCpms());
+        }
     }
 
 
     private boolean Edit(EditText view){
-        return (view.getText().toString().equals(""))? true:false;
+        return ("".equals(view.getText().toString()))? true:false;
     }
 
 
@@ -149,7 +163,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                 break;
             case R.id.btn_submit:
 
-
                 if(Edit(edt_cpname) || Edit(edt_cppp)|| Edit(edt_cpbcgg)|| Edit(edt_cpms)
                         || Edit(edt_cpbcggdw)|| Edit(edt_ewmdynum)|| Edit(edt_cpbzq)  || cplx.getText().equals("")
                         || zsfs.getText().equals("")|| zsywlx.getText().equals("")){
@@ -157,7 +170,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     T("请将信息填写完整");
 
                 }else {
-
 //                    addData();//上传产品信息
                 }
 
@@ -180,7 +192,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                 break;
             case R.id.layout_zsfs:
 
-
                 Log.e("TAG","选择追溯方式");
                 final DialogLeaveApply spinnerzsfs = DialogLeaveApply.getInstance(this,"106");
                 spinnerzsfs.setTitleName("请选择追溯方式");
@@ -195,7 +206,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                 break;
             case R.id.layout_zsywlx:
 
-
                 Log.e("TAG","选择追溯业务类型");
                 final DialogLeaveApply spinnerzslx = DialogLeaveApply.getInstance(this,"107");
                 spinnerzslx.setTitleName("请选择追溯业务类型");
@@ -209,6 +219,9 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
 
                 break;
 
+            default:
+                break;
+
         }
     }
 
@@ -217,7 +230,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
         public void onAddPicClick() {
-                // 进入相册 以下是例子：不需要的api可以不写
                 PictureSelector.create(AddCPinfoActivity.this)
                         .openGallery(PictureMimeType.ofImage())// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                         .theme(themeId)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style

@@ -117,7 +117,7 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
 //        mRecyclerView.setItemAnimator(new SlideInOutRightItemAnimator(mRecyclerView));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(detailAdapter = new sclcAdapter(beanList, mContext,mRecyclerView));
-        detailAdapter.setPreLoadNumber(1);
+//        detailAdapter.setPreLoadNumber(1);
         detailAdapter.setLoadMoreView(new CustomLoadMoreView());
         detailAdapter.setEnableLoadMore(false);
         detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);

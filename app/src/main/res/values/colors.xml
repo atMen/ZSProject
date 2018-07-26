@@ -6,6 +6,7 @@
 
     <color name="red">#DF342C</color>
     <color name="blue">#509CFE</color>
+    <color name="blueblack">#99509CFE</color>
     <color name="login_textcolor">#999999</color>
     <color name="gary_line">#e0e0e0</color>
     <color name="appbg">#F4F9FE</color>

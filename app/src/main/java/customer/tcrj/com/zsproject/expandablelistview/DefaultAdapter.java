@@ -42,6 +42,7 @@ public abstract class DefaultAdapter<T> extends BaseExpandableListAdapter {
             this.parentLists.addAll(list);
         }
         notifyDataSetChanged();
+
     }
 
     /**

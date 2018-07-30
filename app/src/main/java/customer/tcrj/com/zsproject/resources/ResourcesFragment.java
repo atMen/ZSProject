@@ -44,6 +44,7 @@ import customer.tcrj.com.zsproject.R;
 import customer.tcrj.com.zsproject.Utils.ACache;
 import customer.tcrj.com.zsproject.base.BaseFragment;
 import customer.tcrj.com.zsproject.bean.loginInfo;
+import customer.tcrj.com.zsproject.bean.updataInfo;
 import customer.tcrj.com.zsproject.first.AddCPinfoActivity;
 import customer.tcrj.com.zsproject.net.ApiConstants;
 import customer.tcrj.com.zsproject.widget.selectDialog;
@@ -186,20 +187,20 @@ public class ResourcesFragment extends BaseFragment {
         mMyOkhttp.post()
                 .url(ApiConstants.uploadfileApi)
                 .jsonParams(jsonObject.toString())
-                .enqueue(new GsonResponseHandler<loginInfo>() {
+                .enqueue(new GsonResponseHandler<updataInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
                         hideLoadingDialog();
-                        path = null;
-                        edt_cpname.setText(null);
-                        edt_today_plan.setText(null);
-                        delete.setVisibility(View.GONE);
-                        iv_video_screenshot.setImageBitmap(null);
+//                        path = null;
+//                        edt_cpname.setText(null);
+//                        edt_today_plan.setText(null);
+//                        delete.setVisibility(View.GONE);
+//                        iv_video_screenshot.setImageBitmap(null);
                         T(error_msg);
                     }
 
                     @Override
-                    public void onSuccess(int statusCode, loginInfo response) {
+                    public void onSuccess(int statusCode, updataInfo response) {
                         hideLoadingDialog();
                         path = null;
                         edt_cpname.setText(null);

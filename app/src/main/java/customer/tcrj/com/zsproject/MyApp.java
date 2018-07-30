@@ -41,8 +41,8 @@ public class MyApp extends Application {
     private void initOkhttp(){
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
-                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .connectTimeout(50000L, TimeUnit.MILLISECONDS)
+                .readTimeout(50000L, TimeUnit.MILLISECONDS)
                 //其他配置
                 .build();
 

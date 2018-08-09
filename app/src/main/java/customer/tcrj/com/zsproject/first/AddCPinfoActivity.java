@@ -18,6 +18,11 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.tsy.sdk.myokhttp.MyOkHttp;
+import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,16 +30,22 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 import customer.tcrj.com.zsproject.MainActivity;
+import customer.tcrj.com.zsproject.MyApp;
 import customer.tcrj.com.zsproject.R;
+import customer.tcrj.com.zsproject.Utils.ACache;
+import customer.tcrj.com.zsproject.Utils.Utils;
 import customer.tcrj.com.zsproject.adapter.GridImageAdapter;
 import customer.tcrj.com.zsproject.base.BaseActivity;
 import customer.tcrj.com.zsproject.bean.cpInfo;
+import customer.tcrj.com.zsproject.bean.jdInfo;
 import customer.tcrj.com.zsproject.dialog.DialogLeaveApply;
+import customer.tcrj.com.zsproject.net.ApiConstants;
 import customer.tcrj.com.zsproject.widget.FullyGridLayoutManager;
 
 public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListener {
 
 
+    private static final int JDCODE = 001;
     private List<LocalMedia> selectList = new ArrayList<>();
     private GridImageAdapter adapter;
     private int maxSelectNum = 1;
@@ -69,6 +80,8 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     TextView zsfs;
     @BindView(R.id.zsywlx)
     TextView zsywlx;
+    @BindView(R.id.tv_work_naturejob)
+    TextView tv_work_naturejob;
 
     @BindView(R.id.layout_cptype)
     LinearLayout layout_cptype;
@@ -76,11 +89,16 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     LinearLayout layout_zsywlx;
     @BindView(R.id.layout_zsfs)
     LinearLayout layout_zsfs;
+    @BindView(R.id.layout_work_naturejob)
+    LinearLayout layout_work_naturejob;
 
     @BindView(R.id.btn_submit)
     Button btn_submit;
 
     cpInfo.DataBean.ContentBean cpinfo;
+
+    private MyOkHttp mMyOkhttp;
+    private String token;
 
     @Override
     protected int setLayout() {
@@ -89,6 +107,8 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
 
     @Override
     protected void setView() {
+        mMyOkhttp = MyApp.getInstance().getMyOkHttp();
+        token = ACache.get(this).getAsString("token");
         txtTitle.setText("产品信息录入");
         initPic();
     }
@@ -152,7 +172,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     }
 
 
-    @OnClick({R.id.btnback,R.id.layout_cptype,R.id.layout_zsfs,R.id.layout_zsywlx,R.id.btn_submit})
+    @OnClick({R.id.btnback,R.id.layout_cptype,R.id.layout_zsfs,R.id.layout_zsywlx,R.id.btn_submit,R.id.layout_work_naturejob})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnback:
@@ -170,7 +190,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     T("请将信息填写完整");
 
                 }else {
-//                    addData();//上传产品信息
+                    addData();//上传产品信息
                 }
 
                 break;
@@ -185,6 +205,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     @Override
                     public void setOnItemListener(String typeName,String typeCode) {
                         cplx.setText(typeName);
+                        cplxCode = typeCode;
                     }
                 });
                 spinner.show();
@@ -199,6 +220,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     @Override
                     public void setOnItemListener(String typeName,String typeCode) {
                         zsfs.setText(typeName);
+                        zsfsCode = typeCode;
                     }
                 });
                 spinnerzsfs.show();
@@ -213,10 +235,15 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     @Override
                     public void setOnItemListener(String typeName,String typeCode) {
                         zsywlx.setText(typeName);
+                        zsywlxCode = typeCode;
                     }
                 });
                 spinnerzslx.show();
 
+                break;
+
+            case R.id.layout_work_naturejob:
+                toClass(this,JdInfoActivity.class,null,JDCODE);//销售渠道
                 break;
 
             default:
@@ -225,6 +252,63 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         }
     }
 
+
+    private String jdCode;
+    private String cplxCode;
+    private String zsfsCode;
+    private String zsywlxCode;
+    private void addData() {
+
+
+        String cpname = edt_cpname.getText().toString().trim();
+        String edtcppp = edt_cppp.getText().toString().trim();
+        String edtcpbcgg = edt_cpbcgg.getText().toString().trim();
+        String edtcpbcggdw = edt_cpbcggdw.getText().toString().trim();
+        String edtewmdynum = edt_ewmdynum.getText().toString().trim();
+        String edtcpbzq = edt_cpbzq.getText().toString().trim();
+        String edtcpms = edt_cpms.getText().toString().trim();
+
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("page", "");
+            jsonObject.put("size", "30");
+            jsonObject.put("token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mMyOkhttp.post()
+                .url(ApiConstants.jdinfoApi)
+                .jsonParams(jsonObject.toString())
+                .enqueue(new GsonResponseHandler<jdInfo>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+
+                        Log.e("TAG","error_msg"+error_msg);
+
+
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, jdInfo response) {
+
+                        if(response.getErrorcode().equals("9999")){
+
+
+
+                        }else if(response.getErrorcode().equals("204")){
+
+                            Utils.toLogin(AddCPinfoActivity.this);
+                        }
+
+
+                    }
+                });
+
+
+
+    }
 
 
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
@@ -290,6 +374,19 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     }
                     adapter.setList(selectList);
                     adapter.notifyDataSetChanged();
+                    break;
+
+                case JDCODE:
+
+                    if(data != null){
+                        String dlsmc = data.getStringExtra("dlsmc");
+                        jdCode = data.getStringExtra("dlsid");
+
+                        tv_work_naturejob.setText(dlsmc);
+                    }
+                    break;
+
+                default:
                     break;
             }
         }

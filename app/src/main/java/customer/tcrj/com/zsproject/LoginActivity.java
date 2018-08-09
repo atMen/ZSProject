@@ -122,6 +122,7 @@ public class LoginActivity extends BaseActivity {
 
     //缓存数据
     private void ToCache(String key) {
+        Log.e("TAG","token:"+key);
         ACache.get(this).put("token",key);
     }
 

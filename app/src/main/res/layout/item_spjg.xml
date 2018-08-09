@@ -39,17 +39,17 @@
             android:text="产品名称：苹果"
             />
 
-        <TextView
-            android:layout_alignParentRight="true"
-            android:id="@+id/cptime"
-            android:textSize="15sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/login_textcolor"
-            android:text="编号 01"
-            />
-
     </RelativeLayout>
+    <TextView
+        android:layout_marginTop="3dp"
+        android:id="@+id/spjg_bh"
+        android:textSize="13sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/login_textcolor"
+        android:text=""
+        />
+
 
     <View
         android:layout_marginTop="5dp"

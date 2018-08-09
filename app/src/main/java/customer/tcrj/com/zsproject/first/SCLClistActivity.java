@@ -278,6 +278,7 @@ public class SCLClistActivity extends BaseActivity implements View.OnClickListen
         cpInfo.DataBean.ContentBean item = (cpInfo.DataBean.ContentBean) adapter.getItem(position);
         Bundle bundle = new Bundle();
         bundle.putString("productId",item.getId());
+        bundle.putString("cpmc",item.getCpmc());
         toClass(this,SCLCLRActivity.class,bundle);
     }
 }

@@ -87,7 +87,16 @@
             android:name=".first.SCLClistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".resources.ImageActivity"></activity>
+        <activity
+            android:name=".first.XsqdActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".first.JdInfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity android:name=".resources.ImageActivity" />
+        <activity android:name=".first.DlsActivity"></activity>
     </application>
 
 </manifest>

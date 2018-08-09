@@ -22,6 +22,27 @@ public class ApiConstants {
 
 
     /**
+     * 代理商数据
+     */
+    public static final String dlsApi = URLROOT+"companyRest/findAllAgent";
+
+    /**
+     * 销售渠道数据
+     */
+    public static final String xsqdApi = URLROOT+"companyRest/findAllXsqd";
+
+
+    /**
+     *提交产销流程
+     */
+    public static final String tjcxlcApi = URLROOT+"productRest/submitProduct";
+
+    /**
+     * companyRest/findAllBase
+     */
+    public static final String jdinfoApi = URLROOT+"companyRest/findAllBase";
+
+    /**
      * 修改密码
      */
     public static final String mdifypswApi = URLROOT+"personRest/updatePassword";

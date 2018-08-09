@@ -522,6 +522,7 @@
                             android:lines="1"
                             android:maxLines="1"
                             android:hint="请输入"
+                            android:inputType="phone"
                             android:textSize="@dimen/font_size_14" />
                     </LinearLayout>
 

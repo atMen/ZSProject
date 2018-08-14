@@ -42,7 +42,7 @@ public class zssqAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
 
 
     @Override
-    protected void convert(final BaseViewHolder helper, cpInfo.DataBean.ContentBean item) {
+    protected void convert(final BaseViewHolder helper, final cpInfo.DataBean.ContentBean item) {
         Log.e("TAG","item:"+item);
         helper.setText(R.id.cpname, "产品名称："+item.getCpmc());
         helper.setText(R.id.bh, "编号："+item.getBzbh());
@@ -76,7 +76,7 @@ public class zssqAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
 //                updata("500",helper.getPosition());
 
                     if (onItemClickListener != null) {
-                        onItemClickListener.OnItemClick(helper.getPosition());
+                        onItemClickListener.OnItemClick(helper.getPosition(),item);
                     }
 
 
@@ -109,7 +109,7 @@ public class zssqAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
     private OnItemClickListener onItemClickListener;
 
     public interface OnItemClickListener {//定义接口，实现Recyclerview点击事件
-        void OnItemClick(int position);
+        void OnItemClick(int position,cpInfo.DataBean.ContentBean item);
     }
 
 

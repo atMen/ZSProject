@@ -45,6 +45,7 @@ public class SCLCLRActivity extends BaseActivity {
     private SCLCFragment newsFragment;
     private NewXSLCFragment settingFragment;
 
+    String status;
     String productId;
     String cpmc;
 
@@ -61,14 +62,13 @@ public class SCLCLRActivity extends BaseActivity {
         token = ACache.get(this).getAsString("token");
         fragmentManager = getSupportFragmentManager();
         productId = getIntent().getStringExtra("productId");
+        status = getIntent().getStringExtra("status");
         cpmc = getIntent().getStringExtra("cpmc");
         initview();
         setTabSelection(0);
     }
 
     private void initview() {
-        num.setVisibility(View.VISIBLE);
-        num.setText("提交流程");
         txtTitle.setText("产销流程录入");
     }
 
@@ -78,7 +78,7 @@ public class SCLCLRActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_sclc,R.id.tv_xslc,R.id.num})
+    @OnClick({R.id.tv_sclc,R.id.tv_xslc})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_sclc:
@@ -93,10 +93,7 @@ public class SCLCLRActivity extends BaseActivity {
                 setTabSelection(1);
                 break;
 
-            case R.id.num:
 
-                showUpdateDialog();
-                break;
 
             default:
                 break;
@@ -105,75 +102,7 @@ public class SCLCLRActivity extends BaseActivity {
         }
     }
 
-    private void showUpdateDialog() {
 
-        final SweetAlertDialog sad = new SweetAlertDialog(this);
-        sad.setTitleText("提交产销流程");
-        sad.setContentText("您确定要提交产销流程吗？");
-        sad.setConfirmText("确定");
-        sad.setCancelText("取消");
-        sad.setCanceledOnTouchOutside(true);
-        sad.setCancelable(true);
-        sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                sad.dismiss();
-
-
-            }
-        });
-        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                sure();
-                sad.dismiss();
-
-            }
-        });
-        sad.show();
-    }
-
-    private void sure() {
-
-            JSONObject jsonObject = new JSONObject();
-
-            try {
-                jsonObject.put("productId", productId);
-                jsonObject.put("token", token);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            mMyOkhttp.post()
-                    .url(ApiConstants.tjcxlcApi)
-                    .jsonParams(jsonObject.toString())
-                    .enqueue(new GsonResponseHandler<xslcCxInfo>() {
-                        @Override
-                        public void onFailure(int statusCode, String error_msg) {
-
-                            Log.e("TAG","error_msg"+error_msg);
-
-                            T(error_msg);
-                        }
-
-                        @Override
-                        public void onSuccess(int statusCode, xslcCxInfo response) {
-
-                            if(response.getErrorcode().equals("9999")){
-
-                                T(response.getMessage());
-                                finish();
-
-                            }else if(response.getErrorcode().equals("204")){
-
-                                Utils.toLogin(SCLCLRActivity.this);
-                            }
-
-
-                        }
-                    });
-
-    }
 
     private void setTabSelection(int index) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -181,7 +110,7 @@ public class SCLCLRActivity extends BaseActivity {
         switch (index) {
             case 0:
                 if (newsFragment == null) {
-                    newsFragment = new SCLCFragment(productId);
+                    newsFragment = new SCLCFragment(productId,status);
                     transaction.add(R.id.contentContainer, newsFragment);
                 } else {
                     transaction.show(newsFragment);
@@ -190,7 +119,7 @@ public class SCLCLRActivity extends BaseActivity {
                 break;
             case 1:
                 if (settingFragment == null) {
-                    settingFragment = new NewXSLCFragment(productId,cpmc);
+                    settingFragment = new NewXSLCFragment(productId,cpmc,status);
                     transaction.add(R.id.contentContainer, settingFragment);
                 } else {
                     transaction.show(settingFragment);

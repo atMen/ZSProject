@@ -2,6 +2,7 @@ package customer.tcrj.com.zsproject.adapter;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +51,7 @@ public class cpInfoAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean,
         ShowImageUtils.LoadImage(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
 
 
+        Log.e("TAG","图片地址："+ApiConstants.ImageURLROOT+item.getYpt());
 
     }
 

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -31,22 +32,28 @@ public class sclcAdapter extends BaseQuickAdapter<cpSCLCinfo.DataBean.ContentBea
     public static final int LAST_POSITION = -1;
     private Context mContext;
     private RecyclerView mRecyclerView;
+    String status;
 
 
-    public sclcAdapter(@Nullable List<cpSCLCinfo.DataBean.ContentBean> data, Context context, RecyclerView mRecyclerView) {
+    public sclcAdapter(@Nullable List<cpSCLCinfo.DataBean.ContentBean> data, Context context,
+                       RecyclerView mRecyclerView, String status) {
         super(R.layout.sclc_item, data);
         this.mContext = context;
         this.mRecyclerView = mRecyclerView;
+        this.status = status;
     }
 
 
     @Override
     protected void convert(final BaseViewHolder helper, final cpSCLCinfo.DataBean.ContentBean item) {
         helper.setText(R.id.cpname, "名称："+item.getName());
+        helper.setText(R.id.cptime, item.getSort());
+
 
 
         TextView remo = helper.getView(R.id.simple_remo);
         TextView xg = helper.getView(R.id.simple_xg);
+
 
         Log.e("TAG","html:"+item.getDescription());
         HtmlTextView htmlTextView = helper.getView(R.id.html_text);
@@ -58,6 +65,10 @@ public class sclcAdapter extends BaseQuickAdapter<cpSCLCinfo.DataBean.ContentBea
 //        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
 //        webView.loadData(item.getDescription(), "text/html; charset=UTF-8", null);
 
+        if(!"1".equals(status)){
+            remo.setVisibility(View.GONE);
+            xg.setVisibility(View.GONE);
+        }
 
 
 

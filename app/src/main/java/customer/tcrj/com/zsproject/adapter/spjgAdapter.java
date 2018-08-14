@@ -39,7 +39,6 @@ public class spjgAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
         String status = item.getStatus();
         String statusName;
         if("1".equals(status)){
-
             statusName = "待提交";
         }else  if("2".equals(status)){
             statusName = "审批中";
@@ -56,8 +55,6 @@ public class spjgAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
         helper.setText(R.id.spjg_gg, item.getCpbcgg()+item.getCpbcggdw());
         helper.setText(R.id.spjg_num, item.getEwmsl()+"份");
         helper.setText(R.id.simple_time,item.getTimestamp());
-
-
     }
 
 }

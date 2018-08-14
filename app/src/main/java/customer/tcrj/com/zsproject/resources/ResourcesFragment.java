@@ -150,7 +150,6 @@ public class ResourcesFragment extends BaseFragment {
 
     private void upLoadeData(String path, String mc, String ms) {
 
-
         String base64File = null;
         try {
              base64File = Utils.encodeBase64File(path);
@@ -165,7 +164,6 @@ public class ResourcesFragment extends BaseFragment {
         if(base64File != null){
             getDataFromNet(mc,ms,base64File,time);
         }
-
 
     }
 

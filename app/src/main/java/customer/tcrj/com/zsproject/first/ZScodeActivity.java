@@ -38,7 +38,10 @@ import customer.tcrj.com.zsproject.adapter.OnItemClickLitener;
 import customer.tcrj.com.zsproject.adapter.sclcAdapter;
 import customer.tcrj.com.zsproject.adapter.zssqAdapter;
 import customer.tcrj.com.zsproject.base.BaseActivity;
+import customer.tcrj.com.zsproject.bean.addCPInfo;
 import customer.tcrj.com.zsproject.bean.cpInfo;
+import customer.tcrj.com.zsproject.bean.xslcCxInfo;
+import customer.tcrj.com.zsproject.dialog.SweetAlertDialog;
 import customer.tcrj.com.zsproject.net.ApiConstants;
 import customer.tcrj.com.zsproject.widget.CustomLoadMoreView;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
@@ -272,15 +275,13 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
         switch (v.getId()){
             case R.id.btn_tj:
 //              detailAdapter.add("New String",sclcAdapter.LAST_POSITION);//生产流程添加
-
-                String str = null;
+                StringBuilder stringBuilder = new StringBuilder();
                 for(int i = 0;i < selectDatas.size(); i++){
-                    String s = selectDatas.get(i).getCpmc();
-                    str += s;
+                    String s = selectDatas.get(i).getId();
+                    stringBuilder.append(s+",");
                 }
 
-                Log.e("TAG",str+"");
-                T("提交成功"+str);
+                showUpdateDialog(stringBuilder.toString());
 
                 break;
             case R.id.btnback:
@@ -311,11 +312,13 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
 
     private int num;
     @Override
-    public void OnItemClick(int position) {
+    public void OnItemClick(int position,cpInfo.DataBean.ContentBean item) {
 
         num = position;
-        toClass(this,UpdateZSActivity.class,null,REQUESTCODE);
-//        detailAdapter.updata();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("cpinfo",item);
+        toClass(this,UpdateZSActivity.class,bundle,REQUESTCODE);
+//      detailAdapter.updata();
     }
 
     private void updata(String three){
@@ -339,6 +342,80 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
             }
         }
     }
+
+
+    private void showUpdateDialog(final String s) {
+
+        if(s == null || "".equals(s)){
+            T("请选择要申请的产品");
+            return;
+        }
+        Log.e("TAG","stringBuilder:"+s);
+        final SweetAlertDialog sad = new SweetAlertDialog(this);
+        sad.setTitleText("提交追溯码申请");
+        sad.setContentText("您确定要提交吗？");
+        sad.setConfirmText("确定");
+        sad.setCancelText("取消");
+        sad.setCanceledOnTouchOutside(true);
+        sad.setCancelable(true);
+        sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sad.dismiss();
+            }
+        });
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sure(s);
+                sad.dismiss();
+            }
+        });
+        sad.show();
+    }
+
+    private void sure(String s) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("productIds", s);
+            jsonObject.put("token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mMyOkhttp.post()
+                .url(ApiConstants.tjcxlcApi)
+                .jsonParams(jsonObject.toString())
+                .enqueue(new GsonResponseHandler<xslcCxInfo>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+
+                        Log.e("TAG","error_msg"+error_msg);
+
+                        T(error_msg);
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, xslcCxInfo response) {
+
+                        if(response.getErrorcode().equals("9999")){
+
+                            T(response.getMessage());
+                            getData(1);
+
+                        }else if(response.getErrorcode().equals("204")){
+
+                            Utils.toLogin(ZScodeActivity.this);
+                        }
+
+
+                    }
+                });
+
+    }
+
+
+
 
 
 

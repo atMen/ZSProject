@@ -63,6 +63,12 @@ public class ApiConstants {
     public static final String cplistinfoApi = URLROOT+"productRest/findAllProduct";
 
     /**
+     * productRest/getByProductId
+     * 产品信息详情
+     */
+    public static final String cpinfoApi = URLROOT+"productRest/getByProductId";
+
+    /**
      * 产品加工过程列表
      */
     public static final String cpjglistinfoApi = URLROOT+"productRest/findAllProductProcess";
@@ -71,6 +77,17 @@ public class ApiConstants {
      * 添加产品加工过程
      */
     public static final String addcpjglistinfoApi = URLROOT+"productRest/addProductProcess";
+
+    /**
+     * 添加产品信息
+     */
+    public static final String addcplistinfoApi = URLROOT+"productRest/addProduct";
+
+    /**
+     * 修改产品信息
+     *
+     */
+    public static final String updatecpinfoApi = URLROOT+"productRest/updateProduct";
 
     /**
      * 删除产品加工过程

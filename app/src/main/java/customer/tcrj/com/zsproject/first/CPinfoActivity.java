@@ -1,6 +1,7 @@
 package customer.tcrj.com.zsproject.first;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +39,7 @@ import in.srain.cube.views.ptr.PtrHandler;
 
 public class CPinfoActivity extends BaseActivity implements View.OnClickListener, BaseQuickAdapter.OnItemClickListener {
 
+    private static final int CPREQUESTCODE = 001;
     @BindView(R.id.txtTitle)
     TextView txtTitle;
     @BindView(R.id.btnback)
@@ -254,17 +256,15 @@ public class CPinfoActivity extends BaseActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnback:
-
                 finish();
-
                 break;
 
             case R.id.btn_add:
 
-                toClass(CPinfoActivity.this,AddCPinfoActivity.class);//产品信息录入
+                //产品信息录入
+                toClass(CPinfoActivity.this,AddCPinfoActivity.class,null,CPREQUESTCODE);
 
                 break;
-
             default:
                 break;
 
@@ -279,4 +279,23 @@ public class CPinfoActivity extends BaseActivity implements View.OnClickListener
         bundle.putSerializable("cpinfo",item);
         toClass(this,CPListInfoActivity.class,bundle);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+
+                case CPREQUESTCODE:
+                    getData(1);
+                    break;
+
+                default:
+                    break;
+
+            }
+        }
+    }
+
+
 }

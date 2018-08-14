@@ -36,6 +36,7 @@ import customer.tcrj.com.zsproject.Utils.ACache;
 import customer.tcrj.com.zsproject.Utils.Utils;
 import customer.tcrj.com.zsproject.adapter.GridImageAdapter;
 import customer.tcrj.com.zsproject.base.BaseActivity;
+import customer.tcrj.com.zsproject.bean.addCPInfo;
 import customer.tcrj.com.zsproject.bean.cpInfo;
 import customer.tcrj.com.zsproject.bean.jdInfo;
 import customer.tcrj.com.zsproject.dialog.DialogLeaveApply;
@@ -99,6 +100,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
 
     private MyOkHttp mMyOkhttp;
     private String token;
+    private String path = null;
 
     @Override
     protected int setLayout() {
@@ -154,15 +156,22 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     protected void setData() {
         cpinfo = (cpInfo.DataBean.ContentBean) getIntent().getSerializableExtra("cpinfo");
         if(cpinfo != null){
+            txtTitle.setText("产品信息修改");
             btn_submit.setText("保存");
             recycler.setVisibility(View.GONE);
-            edt_cpname.setHint(cpinfo.getCpmc());
-            edt_cppp.setHint(cpinfo.getCppp());
-            edt_cpbcgg.setHint(cpinfo.getCpbcgg());
-            edt_cpbcggdw.setHint(cpinfo.getCpbcggdw());
-            edt_cpbzq.setHint(cpinfo.getBxq());
-            edt_ewmdynum.setHint(cpinfo.getEwmsl());
+
+            edt_cpname.setText(cpinfo.getCpmc());
+            edt_cppp.setText(cpinfo.getCppp());
+            edt_cpbcgg.setText(cpinfo.getCpbcgg());
+            edt_cpbcggdw.setText(cpinfo.getCpbcggdw());
+            edt_cpbzq.setText(cpinfo.getBxq());
+            edt_ewmdynum.setText(cpinfo.getEwmsl());
             edt_cpms.setText(cpinfo.getCpms());
+
+            jdCode = cpinfo.getBaseId();
+            cplxCode = cpinfo.getCplx();
+            zsfsCode = cpinfo.getZsfs();
+            zsywlxCode = cpinfo.getZsywlb();
         }
     }
 
@@ -189,8 +198,28 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
 
                     T("请将信息填写完整");
 
-                }else {
-                    addData();//上传产品信息
+                } else {
+
+                    if(cpinfo == null) {
+
+                        if (path != null) {
+
+                            try {
+                                base64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(path);
+//                            Log.e("TAG","SPbase64:"+base64File);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                            addData();//上传产品信息
+                        } else {
+                            T("请录入产品样品图");
+                        }
+
+                    }else {
+                        addData();
+                    }
+
                 }
 
                 break;
@@ -243,7 +272,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                 break;
 
             case R.id.layout_work_naturejob:
-                toClass(this,JdInfoActivity.class,null,JDCODE);//销售渠道
+                toClass(this,JdInfoActivity.class,null,JDCODE);
                 break;
 
             default:
@@ -257,8 +286,10 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     private String cplxCode;
     private String zsfsCode;
     private String zsywlxCode;
-    private void addData() {
 
+    String base64File = null;
+
+    private void addData() {
 
         String cpname = edt_cpname.getText().toString().trim();
         String edtcppp = edt_cppp.getText().toString().trim();
@@ -268,37 +299,68 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         String edtcpbzq = edt_cpbzq.getText().toString().trim();
         String edtcpms = edt_cpms.getText().toString().trim();
 
+
+
+
         JSONObject jsonObject = new JSONObject();
 
         try {
-            jsonObject.put("page", "");
-            jsonObject.put("size", "30");
+
             jsonObject.put("token", token);
+            jsonObject.put("cpmc", cpname);
+            jsonObject.put("cppp", edtcppp);
+            jsonObject.put("baseId", jdCode);
+            jsonObject.put("cpbcgg", edtcpbcgg);
+            jsonObject.put("cpbcggdw", edtcpbcggdw);
+            jsonObject.put("bxq", edtcpbzq);
+            jsonObject.put("cplx", cplxCode);
+            jsonObject.put("zsfs", zsfsCode);
+            jsonObject.put("zsywlb", zsywlxCode);
+            jsonObject.put("ewmsl", edtewmdynum);
+            jsonObject.put("cpms", edtcpms);
+
+            jsonObject.put("ypt", cpinfo != null? "":base64File);
+            jsonObject.put("yptName", cpinfo != null? "":cpname+".jpg");
+
+            jsonObject.put("xcsp", "");
+            jsonObject.put("xcspName", "");
+            jsonObject.put("xctp", "");
+            jsonObject.put("xctpName", "");
+
+            if(cpinfo != null){
+                jsonObject.put("id", cpinfo.getId());
+            }
+
+
         } catch (JSONException e) {
+            Log.e("TAG","e"+e.getMessage());
             e.printStackTrace();
         }
 
         mMyOkhttp.post()
-                .url(ApiConstants.jdinfoApi)
+                .url(cpinfo != null? ApiConstants.updatecpinfoApi : ApiConstants.addcplistinfoApi)
                 .jsonParams(jsonObject.toString())
-                .enqueue(new GsonResponseHandler<jdInfo>() {
+                .enqueue(new GsonResponseHandler<addCPInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
 
                         Log.e("TAG","error_msg"+error_msg);
 
-
                     }
 
                     @Override
-                    public void onSuccess(int statusCode, jdInfo response) {
+                    public void onSuccess(int statusCode, addCPInfo response) {
+
+                        T(response.getMessage());
 
                         if(response.getErrorcode().equals("9999")){
 
-
+                            Intent i = new Intent();
+                            i.putExtra("cpinfo",response.getData().getId());
+                            setResult(RESULT_OK, i);
+                            finish();
 
                         }else if(response.getErrorcode().equals("204")){
-
                             Utils.toLogin(AddCPinfoActivity.this);
                         }
 
@@ -368,10 +430,12 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     // 3.media.getCompressPath();为压缩后path，需判断media.isCompressed();是否为true
                     // 如果裁剪并压缩了，已取压缩路径为准，因为是先裁剪后压缩的
                     for (LocalMedia media : selectList) {
-                        Log.i("原图片-----》", media.getPath());
-                        Log.i("压缩图片-----》", media.getCompressPath());
+//                        Log.i("原图片-----》", media.getPath());
+//                        Log.i("压缩图片-----》", media.getCompressPath());
                         //1.4M可压缩到500多K
+                        path = media.getCompressPath();
                     }
+
                     adapter.setList(selectList);
                     adapter.notifyDataSetChanged();
                     break;

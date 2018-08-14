@@ -75,10 +75,12 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
     private MyOkHttp mMyOkhttp;
     private String token;
     String productId;
+    String status;
 
     @SuppressLint("ValidFragment")
-    public SCLCFragment(String productId) {
+    public SCLCFragment(String productId, String status) {
         this.productId = productId;
+        this.status = status;
     }
 
     @Override
@@ -94,6 +96,11 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
     }
 
     private void initview() {
+
+        if(!"1".equals(status)){
+            btn_add.setVisibility(View.GONE);
+        }
+
         mPtrFrameLayout.disableWhenHorizontalMove(true);
         mPtrFrameLayout.setPtrHandler(new PtrHandler() {
             @Override
@@ -116,7 +123,7 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 //        mRecyclerView.setItemAnimator(new SlideInOutRightItemAnimator(mRecyclerView));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(detailAdapter = new sclcAdapter(beanList, mContext,mRecyclerView));
+        mRecyclerView.setAdapter(detailAdapter = new sclcAdapter(beanList, mContext,mRecyclerView,status));
 //        detailAdapter.setPreLoadNumber(1);
         detailAdapter.setLoadMoreView(new CustomLoadMoreView());
         detailAdapter.setEnableLoadMore(false);

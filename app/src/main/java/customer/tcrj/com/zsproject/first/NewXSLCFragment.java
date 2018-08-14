@@ -67,10 +67,13 @@ public class NewXSLCFragment extends BaseFragment {
     private String token;
     private String productId;
     private String cpmc;
+    private String status;
+
     @SuppressLint("ValidFragment")
-    public NewXSLCFragment(String cpmc, String productId) {
+    public NewXSLCFragment(String cpmc, String productId, String status) {
         this.productId = productId;
         this.cpmc = cpmc;
+        this.status = status;
     }
 
     @Override
@@ -82,6 +85,12 @@ public class NewXSLCFragment extends BaseFragment {
     protected void setView() {
         mMyOkhttp = MyApp.getInstance().getMyOkHttp();
         token = ACache.get(mContext).getAsString("token");
+
+        if(!"1".equals(status)){
+            btn_tj.setVisibility(View.GONE);
+            tv_dls.setVisibility(View.GONE);
+            tv_xsqd.setVisibility(View.GONE);
+        }
     }
 
 
@@ -176,6 +185,7 @@ public class NewXSLCFragment extends BaseFragment {
         }
 
     }
+
     private String dlsName;
     private String dlsId;
     private String qdName;
@@ -224,8 +234,6 @@ public class NewXSLCFragment extends BaseFragment {
                     }
                 });
     }
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

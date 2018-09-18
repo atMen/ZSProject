@@ -24,5 +24,9 @@
     <dimen name="padding_20">20dp</dimen>
     <dimen name="padding_30">30dp</dimen>
 
+    <dimen name="heigth_45">45dp</dimen>
+
+    <dimen name="line_1">1px</dimen>
+
 
 </resources>

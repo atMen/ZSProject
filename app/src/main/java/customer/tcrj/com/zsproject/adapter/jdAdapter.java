@@ -34,7 +34,7 @@ public class jdAdapter extends BaseQuickAdapter<jdInfo.DataBean.ContentBean, Bas
 
         int position = helper.getPosition();
         CheckedTextView view = (CheckedTextView) helper.getView(R.id.ctv_single_choice);
-        view.setText(item.getAddress());
+        view.setText(item.getJdmc());
         if (select == position) {
             view.setChecked(true);
         } else {

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import customer.tcrj.com.zsproject.expandablelistview.DataInfo;
 import customer.tcrj.com.zsproject.expandablelistview.DefaultAdapter;
 import customer.tcrj.com.zsproject.expandablelistview.ParentHolder;
 import customer.tcrj.com.zsproject.net.ApiConstants;
+import customer.tcrj.com.zsproject.widget.DialogDateTimePicker;
 
 
 /**
@@ -62,6 +64,13 @@ public class NewXSLCFragment extends BaseFragment {
     TextView tv_dls;
     @BindView(R.id.btn_tj)
     Button btn_tj;
+
+    @BindView(R.id.ll_time)
+    LinearLayout ll_time;
+    @BindView(R.id.time)
+    TextView time;
+    @BindView(R.id.time_pop)
+    LinearLayout time_pop;
 
     private MyOkHttp mMyOkhttp;
     private String token;
@@ -90,6 +99,8 @@ public class NewXSLCFragment extends BaseFragment {
             btn_tj.setVisibility(View.GONE);
             tv_dls.setVisibility(View.GONE);
             tv_xsqd.setVisibility(View.GONE);
+
+            time_pop.setVisibility(View.GONE);
         }
     }
 
@@ -102,7 +113,7 @@ public class NewXSLCFragment extends BaseFragment {
 
     //获取网络数据
     private void getData() {
-
+        showLoadingDialog("正在加载信息...");
         JSONObject jsonObject = new JSONObject();
 
         try {
@@ -113,12 +124,13 @@ public class NewXSLCFragment extends BaseFragment {
         }
 
         mMyOkhttp.post()
-                .url(ApiConstants.dlsApi)
+                .url(ApiConstants.xslcInfoApi)
                 .jsonParams(jsonObject.toString())
                 .enqueue(new GsonResponseHandler<xslcCxInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
 
+                        hideLoadingDialog();
                         Log.e("TAG","error_msg"+error_msg);
 
 
@@ -126,7 +138,7 @@ public class NewXSLCFragment extends BaseFragment {
 
                     @Override
                     public void onSuccess(int statusCode, xslcCxInfo response) {
-
+                        hideLoadingDialog();
                         if(response.getErrorcode().equals("9999")){
 
 
@@ -152,13 +164,15 @@ public class NewXSLCFragment extends BaseFragment {
 
             tvxsqdmc.setText("销售渠道管理: "+dataBean.getQdmc());
             tv_xsqd.setText("修改");
+
+            time.setText(dataBean.getChsj());
         }else {
 
         }
     }
 
 
-    @OnClick({R.id.tv_dls,R.id.tv_xsqd,R.id.btn_tj})
+    @OnClick({R.id.tv_dls,R.id.tv_xsqd,R.id.btn_tj,R.id.ll_time})
     public void onClick(View v) {
 
         switch (v.getId()){
@@ -172,11 +186,25 @@ public class NewXSLCFragment extends BaseFragment {
 
             case R.id.btn_tj:
 
+                String chsj = time.getText().toString();
+                if("请选择出货时间".equals(chsj)){
+                    T("请选择出货时间");
+                    return;
+                }
+
+
                 if(TextUtils.isEmpty(dlsId) || TextUtils.isEmpty(qdId)){
                     T("保存失败");
                     return;
                 }
-                tjData();
+                tjData(chsj);
+                break;
+
+
+            case R.id.ll_time:
+                if("1".equals(status)){
+                    setTimd();
+                }
                 break;
 
             default:
@@ -186,11 +214,26 @@ public class NewXSLCFragment extends BaseFragment {
 
     }
 
+    private void setTimd() {
+
+        DialogDateTimePicker start = new DialogDateTimePicker(mContext);
+        start.onDatePickerListener(new DialogDateTimePicker.DatePickerCallBack() {
+            @Override
+            public void onClickListener(String s) {
+                time.setText(s);
+
+            }
+        });
+        start.show();
+    }
+
     private String dlsName;
     private String dlsId;
     private String qdName;
     private String qdId;
-    private void tjData() {
+    private void tjData(String chsj) {
+
+        showLoadingDialog("正在提交信息...");
         JSONObject jsonObject = new JSONObject();
 
         try {
@@ -201,17 +244,19 @@ public class NewXSLCFragment extends BaseFragment {
             jsonObject.put("xsqdId", qdId);
             jsonObject.put("qdmc", qdName);
             jsonObject.put("cpmc", cpmc);
+            jsonObject.put("chsj",chsj);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         mMyOkhttp.post()
-                .url(ApiConstants.dlsApi)
+                .url(ApiConstants.addProductApi)
                 .jsonParams(jsonObject.toString())
                 .enqueue(new GsonResponseHandler<xslcCxInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
 
+                        hideLoadingDialog();
                         Log.e("TAG","error_msg"+error_msg);
 
                         T(error_msg);
@@ -219,11 +264,12 @@ public class NewXSLCFragment extends BaseFragment {
 
                     @Override
                     public void onSuccess(int statusCode, xslcCxInfo response) {
-
+                        T(response.getMessage());
+                        hideLoadingDialog();
                         if(response.getErrorcode().equals("9999")){
 
 
-                            T(response.getMessage());
+
 
                         }else if(response.getErrorcode().equals("204")){
 

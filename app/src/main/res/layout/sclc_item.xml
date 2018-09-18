@@ -100,7 +100,7 @@
             android:textSize="16sp"
             android:id="@+id/simple_time"
             android:layout_width="match_parent"
-            android:text="time"
+            android:text=""
             android:layout_height="wrap_content"
             android:layout_centerVertical="true" />
 

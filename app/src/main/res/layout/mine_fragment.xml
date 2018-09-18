@@ -32,7 +32,7 @@
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="账号：atMen"
+            android:text=""
             android:gravity="center_horizontal"
             android:textSize="@dimen/font_size_14"
             android:textColor="@color/white"

@@ -48,10 +48,10 @@ public class cpInfoAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean,
 
 
 //      ShowImageUtils.showImageView(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
-        ShowImageUtils.LoadImage(mContext,ApiConstants.ImageURLROOT+item.getYpt(), (ImageView) helper.getView(R.id.im_icon));
+        ShowImageUtils.LoadImage(mContext,ApiConstants.ImageURLROOT+item.getYpt().replace("\\","/"), (ImageView) helper.getView(R.id.im_icon));
 
 
-        Log.e("TAG","图片地址："+ApiConstants.ImageURLROOT+item.getYpt());
+        Log.e("TAG","图片地址："+ApiConstants.ImageURLROOT+item.getYpt().replace("\\","/"));
 
     }
 

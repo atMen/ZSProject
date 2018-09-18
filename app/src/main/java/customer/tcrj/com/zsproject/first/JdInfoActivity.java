@@ -72,7 +72,7 @@ public class JdInfoActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     protected void setView() {
-        txtTitle.setText("代理商信息");
+        txtTitle.setText("产品基地信息");
         mMyOkhttp = MyApp.getInstance().getMyOkHttp();
         token = ACache.get(this).getAsString("token");
         setListener();
@@ -283,7 +283,7 @@ public class JdInfoActivity extends BaseActivity implements View.OnClickListener
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
         jdInfo.DataBean.ContentBean bean = (jdInfo.DataBean.ContentBean) adapter.getItem(position);
-        dlsmc = bean.getAddress();
+        dlsmc = bean.getJdmc();
         dlsid = bean.getId();
         detailAdapter.setSelectItem(position);
         detailAdapter.notifyDataSetChanged();

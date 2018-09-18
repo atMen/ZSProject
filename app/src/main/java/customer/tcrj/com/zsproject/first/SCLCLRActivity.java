@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tsy.sdk.myokhttp.MyOkHttp;
@@ -31,7 +32,8 @@ import customer.tcrj.com.zsproject.search.SearchFragment;
 
 public class SCLCLRActivity extends BaseActivity {
 
-
+    @BindView(R.id.btnback)
+    ImageView btnback;
     @BindView(R.id.txtTitle)
     TextView  txtTitle;
     @BindView(R.id.tv_sclc)
@@ -78,7 +80,7 @@ public class SCLCLRActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_sclc,R.id.tv_xslc})
+    @OnClick({R.id.tv_sclc,R.id.tv_xslc,R.id.btnback})
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_sclc:
@@ -92,7 +94,11 @@ public class SCLCLRActivity extends BaseActivity {
                 tv_sclc.setTextColor(getResources().getColor(R.color.login_textcolor));
                 setTabSelection(1);
                 break;
+            case R.id.btnback:
 
+                finish();
+
+                break;
 
 
             default:
@@ -119,7 +125,7 @@ public class SCLCLRActivity extends BaseActivity {
                 break;
             case 1:
                 if (settingFragment == null) {
-                    settingFragment = new NewXSLCFragment(productId,cpmc,status);
+                    settingFragment = new NewXSLCFragment(cpmc,productId,status);
                     transaction.add(R.id.contentContainer, settingFragment);
                 } else {
                     transaction.show(settingFragment);

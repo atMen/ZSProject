@@ -96,7 +96,6 @@ public class zssqAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
 
     public void updata(String s,int position) {
         cpInfo.DataBean.ContentBean s1 = mData.get(position);
-
         s1.setEwmsl(s);
         Log.e("TAG","s1:"+s1);
         Log.e("TAG","s:"+s);

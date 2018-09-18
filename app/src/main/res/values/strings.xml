@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ZSProject</string>
+    <string name="app_name">安塞产品追溯</string>
 
     <string name="music">首页</string>
     <string name="backup">搜索</string>
@@ -8,7 +8,7 @@
 
     <!-- 状态视图  -->
     <string name="loading">加载中...</string>
-    <string name="text_empty">还没有数据呢！</string>
+    <string name="text_empty">暂无数据！</string>
     <string name="data_failed">数据加载失败</string>
     <string name="data_nomore">暂无更多数据</string>
     <string name="text_nonet">网络异常！</string>

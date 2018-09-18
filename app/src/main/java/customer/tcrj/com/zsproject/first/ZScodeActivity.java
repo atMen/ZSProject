@@ -143,6 +143,8 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
             jsonObject.put("page", num+"");
             jsonObject.put("size", "30");
             jsonObject.put("token", token);
+            jsonObject.put("status", "1,4");
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

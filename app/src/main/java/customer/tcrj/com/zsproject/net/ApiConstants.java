@@ -22,6 +22,10 @@ public class ApiConstants {
 
 
     /**
+     * 产品销售流程查询
+     */
+    public static final String xslcInfoApi = URLROOT+"productRest/findAllProductChuhuo";
+    /**
      * 代理商数据
      */
     public static final String dlsApi = URLROOT+"companyRest/findAllAgent";
@@ -30,6 +34,11 @@ public class ApiConstants {
      * 销售渠道数据
      */
     public static final String xsqdApi = URLROOT+"companyRest/findAllXsqd";
+
+    /**
+     * 添加销售渠道数据
+     */
+    public static final String addProductApi = URLROOT+"productRest/addProductChuhuo";
 
 
     /**
@@ -67,6 +76,11 @@ public class ApiConstants {
      * 产品信息详情
      */
     public static final String cpinfoApi = URLROOT+"productRest/getByProductId";
+    /**
+     * dictionaryRest/getDicById
+     * 字典详情
+     */
+    public static final String getdicbyidinfoApi = URLROOT+"dictionaryRest/getDicById";
 
     /**
      * 产品加工过程列表

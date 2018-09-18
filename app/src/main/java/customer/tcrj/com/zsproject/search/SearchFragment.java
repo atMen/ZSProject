@@ -1,6 +1,7 @@
 package customer.tcrj.com.zsproject.search;
 
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,6 +30,7 @@ import customer.tcrj.com.zsproject.adapter.cpInfoAdapter;
 import customer.tcrj.com.zsproject.base.BaseFragment;
 import customer.tcrj.com.zsproject.bean.cpInfo;
 import customer.tcrj.com.zsproject.first.AddCPinfoActivity;
+import customer.tcrj.com.zsproject.first.CPListInfoActivity;
 import customer.tcrj.com.zsproject.first.CPinfoActivity;
 import customer.tcrj.com.zsproject.net.ApiConstants;
 import customer.tcrj.com.zsproject.widget.CustomLoadMoreView;
@@ -270,6 +272,9 @@ public class SearchFragment extends BaseFragment implements BaseQuickAdapter.OnI
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        cpInfo.DataBean.ContentBean item = (cpInfo.DataBean.ContentBean) adapter.getItem(position);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("cpinfo",item);
+        toClass(mContext,CPListInfoActivity.class,bundle);
     }
 }

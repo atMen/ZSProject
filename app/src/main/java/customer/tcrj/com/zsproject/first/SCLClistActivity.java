@@ -66,7 +66,7 @@ public class SCLClistActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void setView() {
 
-        txtTitle.setText("产品信息录入");
+        txtTitle.setText("产品信息列表");
         btn_add.setVisibility(View.GONE);
 
         mMyOkhttp = MyApp.getInstance().getMyOkHttp();
@@ -104,7 +104,7 @@ public class SCLClistActivity extends BaseActivity implements View.OnClickListen
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(detailAdapter = new cpInfoAdapter(beanList, this));
-//        detailAdapter.setPreLoadNumber(1);
+//      detailAdapter.setPreLoadNumber(1);
         detailAdapter.setLoadMoreView(new CustomLoadMoreView());
         detailAdapter.setEnableLoadMore(true);
         detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);

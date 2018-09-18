@@ -27,6 +27,7 @@ import customer.tcrj.com.zsproject.Utils.Utils;
 import customer.tcrj.com.zsproject.base.BaseActivity;
 import customer.tcrj.com.zsproject.bean.cpInfo;
 import customer.tcrj.com.zsproject.bean.cpInfoXq;
+import customer.tcrj.com.zsproject.bean.dicBean;
 import customer.tcrj.com.zsproject.bean.xslcCxInfo;
 import customer.tcrj.com.zsproject.net.ApiConstants;
 
@@ -79,15 +80,24 @@ public class CPListInfoActivity extends BaseActivity  {
         mMyOkhttp = MyApp.getInstance().getMyOkHttp();
         token = ACache.get(this).getAsString("token");
         txtTitle.setText("产品详情信息");
-        num.setVisibility(View.VISIBLE);
-        num.setText("编辑");
+
 
     }
 
     @Override
     protected void setData() {
         cpinfo = (cpInfo.DataBean.ContentBean) getIntent().getSerializableExtra("cpinfo");
+        if("1".equals(cpinfo.getStatus())){
+            num.setVisibility(View.VISIBLE);
+            num.setText("编辑");
+        }
+        cptime.setText(cpinfo.getTimestamp());
         getData(cpinfo.getId());
+
+        getDataById(cpinfo.getCplx());
+        getDataById2(cpinfo.getZsfs());
+        getDataById3(cpinfo.getZsywlb());
+
 //        if(cpinfo != null){
 //            cpname.setText("产品名称："+cpinfo.getCpmc());
 //            cptime.setText(cpinfo.getTimestamp());
@@ -104,7 +114,6 @@ public class CPListInfoActivity extends BaseActivity  {
 //            htmlTextView.setHtml(cpinfo.getCpms(),
 //                    new HtmlHttpImageGetter(htmlTextView));
 //        }
-
     }
 
 
@@ -123,15 +132,17 @@ public class CPListInfoActivity extends BaseActivity  {
             case R.id.num:
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("cpinfo",cpinfo);
+                bundle.putString("zsfsname",zsfsname);
+                bundle.putString("zsywlxname",zsywlxname);
+                bundle.putString("cplxname",cplxname);
+                bundle.putString("jdname",jdmc);
                 toClass(CPListInfoActivity.this,AddCPinfoActivity.class,bundle,CPREQUESTCODE);//产品信息录入
 
                 break;
 
             default:
                 break;
-
         }
-
     }
 
     @Override
@@ -153,7 +164,6 @@ public class CPListInfoActivity extends BaseActivity  {
             }
         }
     }
-
 
     //获取网络数据
     private void getData(String cpid) {
@@ -180,6 +190,8 @@ public class CPListInfoActivity extends BaseActivity  {
 
                     @Override
                     public void onSuccess(int statusCode, cpInfoXq response) {
+
+
                         hideLoadingDialog();
                         if(response.getErrorcode().equals("9999")){
 
@@ -196,18 +208,141 @@ public class CPListInfoActivity extends BaseActivity  {
 
     }
 
+    private String zsywlxname;
+    private String cplxname;
+    private String zsfsname;
+    //获取网络数据
+    private void getDataById(String cpid) {
+
+        showLoadingDialog();
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("id", cpid);
+            jsonObject.put("token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mMyOkhttp.post()
+                .url(ApiConstants.getdicbyidinfoApi)
+                .jsonParams(jsonObject.toString())
+                .enqueue(new GsonResponseHandler<dicBean>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+                        Log.e("TAG","error_msg"+error_msg);
+                        hideLoadingDialog();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, dicBean response) {
+                        hideLoadingDialog();
+                        if(response.getErrorcode().equals("9999")){
+                             cplxname = response.getData().getName();
+                            tv06.setText(response.getData().getName());
+
+                        }else if(response.getErrorcode().equals("204")){
+
+                            Utils.toLogin(CPListInfoActivity.this);
+                        }
+
+
+                    }
+                });
+
+    }
+    //获取网络数据
+    private void getDataById2(String cpid) {
+
+        showLoadingDialog();
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("id", cpid);
+            jsonObject.put("token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mMyOkhttp.post()
+                .url(ApiConstants.getdicbyidinfoApi)
+                .jsonParams(jsonObject.toString())
+                .enqueue(new GsonResponseHandler<dicBean>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+                        Log.e("TAG","error_msg"+error_msg);
+                        hideLoadingDialog();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, dicBean response) {
+                        Log.e("TAG","error_msg"+response.getErrorcode());
+                        hideLoadingDialog();
+                        if(response.getErrorcode().equals("9999")){
+                             zsfsname = response.getData().getName();
+                            tv07.setText(response.getData().getName());
+
+                        }else if(response.getErrorcode().equals("204")){
+
+                            Utils.toLogin(CPListInfoActivity.this);
+                        }
+
+
+                    }
+                });
+
+    }
+    //获取网络数据
+    private void getDataById3(String cpid) {
+
+        showLoadingDialog();
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("id", cpid);
+            jsonObject.put("token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mMyOkhttp.post()
+                .url(ApiConstants.getdicbyidinfoApi)
+                .jsonParams(jsonObject.toString())
+                .enqueue(new GsonResponseHandler<dicBean>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
+                        Log.e("TAG","error_msg"+error_msg);
+                        hideLoadingDialog();
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, dicBean response) {
+                        Log.e("TAG","error_msg"+response.getErrorcode());
+                        hideLoadingDialog();
+                        if(response.getErrorcode().equals("9999")){
+                            zsywlxname = response.getData().getName();
+                            tv08.setText(response.getData().getName());
+
+                        }else if(response.getErrorcode().equals("204")){
+
+                            Utils.toLogin(CPListInfoActivity.this);
+                        }
+
+
+                    }
+                });
+
+    }
+    String jdmc;
     private void setCpInfo(cpInfoXq.DataBean cpinfo) {
         if(cpinfo != null){
             cpname.setText("产品名称："+cpinfo.getCpmc());
-            cptime.setText(cpinfo.getTimestamp());
+            jdmc = cpinfo.getJdmc();
             tv01.setText(cpinfo.getCppp());
             tv02.setText(cpinfo.getJdmc());
             tv03.setText(cpinfo.getCpbcgg());
             tv04.setText(cpinfo.getCpbcggdw());
             tv05.setText(cpinfo.getBxq());
-            tv06.setText(cpinfo.getCplx());
-            tv07.setText(cpinfo.getZsfs());
-            tv08.setText(cpinfo.getZsywlb());
             tv09.setText(cpinfo.getEwmsl());
 
             htmlTextView.setHtml(cpinfo.getCpms(),

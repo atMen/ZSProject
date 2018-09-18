@@ -152,13 +152,24 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         });
     }
 
+    private String zsywlxname;
+    private String cplxname;
+    private String zsfsname;
+    private String jdname;
+
     @Override
     protected void setData() {
         cpinfo = (cpInfo.DataBean.ContentBean) getIntent().getSerializableExtra("cpinfo");
+
+        cplxname = getIntent().getStringExtra("cplxname");
+        zsfsname = getIntent().getStringExtra("zsfsname");
+        zsywlxname = getIntent().getStringExtra("zsywlxname");
+        jdname = getIntent().getStringExtra("jdname");
+
         if(cpinfo != null){
             txtTitle.setText("产品信息修改");
             btn_submit.setText("保存");
-            recycler.setVisibility(View.GONE);
+//            recycler.setVisibility(View.GONE);
 
             edt_cpname.setText(cpinfo.getCpmc());
             edt_cppp.setText(cpinfo.getCppp());
@@ -167,6 +178,11 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
             edt_cpbzq.setText(cpinfo.getBxq());
             edt_ewmdynum.setText(cpinfo.getEwmsl());
             edt_cpms.setText(cpinfo.getCpms());
+
+            tv_work_naturejob.setText(jdname);
+            cplx.setText(cplxname);
+            zsfs.setText(zsfsname);
+            zsywlx.setText(zsywlxname);
 
             jdCode = cpinfo.getBaseId();
             cplxCode = cpinfo.getCplx();
@@ -200,7 +216,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
 
                 } else {
 
-                    if(cpinfo == null) {
+//                    if(cpinfo == null) {
 
                         if (path != null) {
 
@@ -216,9 +232,10 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                             T("请录入产品样品图");
                         }
 
-                    }else {
-                        addData();
-                    }
+//                    }
+//                    else {
+//                        addData();
+//                    }
 
                 }
 
@@ -299,8 +316,9 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         String edtcpbzq = edt_cpbzq.getText().toString().trim();
         String edtcpms = edt_cpms.getText().toString().trim();
 
-
-
+        String cplxmc = cplx.getText().toString();
+        String zsfsmc = zsfs.getText().toString();
+        String zsywlxmc = zsywlx.getText().toString();
 
         JSONObject jsonObject = new JSONObject();
 
@@ -319,8 +337,8 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
             jsonObject.put("ewmsl", edtewmdynum);
             jsonObject.put("cpms", edtcpms);
 
-            jsonObject.put("ypt", cpinfo != null? "":base64File);
-            jsonObject.put("yptName", cpinfo != null? "":cpname+".jpg");
+            jsonObject.put("ypt", base64File);
+            jsonObject.put("yptName", cpname+".jpg");
 
             jsonObject.put("xcsp", "");
             jsonObject.put("xcspName", "");

@@ -111,6 +111,7 @@ public class LoginActivity extends BaseActivity {
                         Log.e("TAG","getErrorcode:"+response.getErrorcode());
                         if("9999".equals(response.getErrorcode())){
                             Log.e("TAG","成功");
+                            ACache.get(LoginActivity.this).put("psw",psw);
                             ToCache(response.getData());
                             toClass(LoginActivity.this,MainActivity.class);
                             finish();
@@ -124,6 +125,7 @@ public class LoginActivity extends BaseActivity {
     private void ToCache(String key) {
         Log.e("TAG","token:"+key);
         ACache.get(this).put("token",key);
+
     }
 
 

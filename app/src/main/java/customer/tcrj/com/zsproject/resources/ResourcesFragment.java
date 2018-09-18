@@ -153,7 +153,7 @@ public class ResourcesFragment extends BaseFragment {
         String base64File = null;
         try {
              base64File = Utils.encodeBase64File(path);
-            Log.e("TAG","SPbase64:"+base64File);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,6 +170,7 @@ public class ResourcesFragment extends BaseFragment {
     private String token;
     public void getDataFromNet(String mc, String ms, String file,String time) {
 
+        Log.e("TAG","base64:"+"data:image/jpeg;base64,"+file);
         token =  ACache.get(mContext).getAsString("token");
         JSONObject jsonObject = new JSONObject();
         try {
@@ -217,11 +218,11 @@ public class ResourcesFragment extends BaseFragment {
             dialog.dismiss();
             switch (view.getId()){
                 case R.id.pictrue :
-                    Toast.makeText(mContext, "图片", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, "图片", Toast.LENGTH_SHORT).show();
                     onAddPicClick();
                     break;
                 case R.id.video:
-                    Toast.makeText(mContext, "视频", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, "视频", Toast.LENGTH_SHORT).show();
                     //视频录制
                     toClass(mContext,VideoRecorderActivity.class,null,REQUESTCODE);
                     break;

@@ -16,6 +16,8 @@ import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
+import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,10 +33,14 @@ import customer.tcrj.com.zsproject.net.ApiConstants;
 
 public class SCLCwriteActivity extends BaseActivity {
 
+    private static final int CODE = 001;
     @BindView(R.id.btnback)
     ImageView btnback;
     @BindView(R.id.txtTitle)
     TextView txtTitle;
+    @BindView(R.id.num)
+    TextView num;
+
     @BindView(R.id.edt_today_plan)
     EditText edt_today_plan;
     @BindView(R.id.btn_submit_daily)
@@ -56,17 +62,24 @@ public class SCLCwriteActivity extends BaseActivity {
 
     @Override
     protected void setView() {
+        num.setVisibility(View.VISIBLE);
+        num.setText("流程模板");
         productId = getIntent().getStringExtra("productId");
         position = (cpSCLCinfo.DataBean.ContentBean) getIntent().getSerializableExtra("ContentBean");
 
         if(productId != null){
             isadd = true;
         }else{
+
+            HtmlTextView htmlTextView = new HtmlTextView(this);
+            htmlTextView.setHtml(position.getDescription(),
+                    new HtmlHttpImageGetter(htmlTextView));
+            String text = htmlTextView.getText().toString();
+
             isadd = false;
-            edt_today_plan.setText(position.getDescription());
+            edt_today_plan.setText(text);
             edt_cpname.setText(position.getName());
         }
-
 
         token = ACache.get(this).getAsString("token");
         txtTitle.setText("生产流程");
@@ -108,9 +121,13 @@ public class SCLCwriteActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.btnback,R.id.btn_submit_daily,R.id.layout_work_naturejob})
+    @OnClick({R.id.btnback,R.id.btn_submit_daily,R.id.layout_work_naturejob,R.id.num})
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.num:
+                toClass(this,SCLCMBActivity.class,null,CODE);//生产流程模板数据
+                break;
+
             case R.id.btnback:
                 finish();
                 break;
@@ -120,23 +137,19 @@ public class SCLCwriteActivity extends BaseActivity {
                 String three = edt_today_plan.getText().toString();
                 String cpname = edt_cpname.getText().toString();
                 if(three.equals("") || cpname.equals("")){
-
                     T("请正确填写数据");
                 }else {
-
                     if(isadd){
                         add(cpname,three);
                     }else {
                         updata(cpname,three);
                     }
-
                 }
-
-
-
 
                 break;
 
+            default:
+                break;
         }
     }
 
@@ -229,5 +242,28 @@ public class SCLCwriteActivity extends BaseActivity {
                     }
                 });
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(data != null){
+            String mc = data.getStringExtra("mc");
+            String ms = data.getStringExtra("ms");
+
+            if(requestCode== CODE && resultCode == 3 && data != null){
+                HtmlTextView htmlTextView = new HtmlTextView(this);
+                htmlTextView.setHtml(ms,
+                        new HtmlHttpImageGetter(htmlTextView));
+                String text = htmlTextView.getText().toString();
+
+
+                edt_today_plan.setText(text);
+                edt_cpname.setText(mc);
+            }
+        }
+    }
+
 
 }

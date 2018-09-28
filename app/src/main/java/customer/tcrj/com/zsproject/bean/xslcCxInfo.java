@@ -1,12 +1,13 @@
 package customer.tcrj.com.zsproject.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by leict on 2018/8/9.
  */
 
-public class xslcCxInfo {
+public class xslcCxInfo implements Serializable{
 
     /**
      * errorcode : 9999
@@ -42,7 +43,7 @@ public class xslcCxInfo {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * agentId : 402894b3636bddff01636bf3bb9c00f0
          * bz :

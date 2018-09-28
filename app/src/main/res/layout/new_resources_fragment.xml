@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:background="@color/appbg"
+    >
+
+    <RelativeLayout
+        android:background="@color/blue"
+        android:paddingTop="25dp"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="企业资源库"
+            android:textSize="@dimen/font_size_18"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/font_size_18"
+            android:textColor="@color/white"
+            android:layout_marginRight="10dp"
+            />
+
+
+    </RelativeLayout>
+
+
+    <include
+        android:visibility="gone"
+        layout="@layout/item_search"/>
+
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/mPtrFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true">
+
+        <customer.tcrj.com.zsproject.widget.SimpleMultiStateView
+            android:id="@+id/SimpleMultiStateView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_centerHorizontal="true"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </android.support.v7.widget.RecyclerView>
+
+        </customer.tcrj.com.zsproject.widget.SimpleMultiStateView>
+
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+</LinearLayout>

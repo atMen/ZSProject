@@ -59,6 +59,8 @@ public class sclcAdapter extends BaseQuickAdapter<cpSCLCinfo.DataBean.ContentBea
         HtmlTextView htmlTextView = helper.getView(R.id.html_text);
         htmlTextView.setHtml(item.getDescription(),
                 new HtmlHttpImageGetter(htmlTextView));
+        CharSequence text = htmlTextView.getText();
+        Log.e("TAG","htmltext:"+text.toString());
 
         //        WebView webView = helper.getView(R.id.simple_content);
 //        webView.getSettings().setJavaScriptEnabled(true);

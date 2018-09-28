@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,9 +45,6 @@ import in.srain.cube.views.ptr.PtrHandler;
 
 public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener {
 
-
-
-
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.mPtrFrameLayout)
@@ -56,16 +54,18 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     ImageView btnback;
     @BindView(R.id.txtTitle)
     TextView txtTitle;
-    @BindView(R.id.layout_gg)
-    LinearLayout layout_gg;
 
     @BindView(R.id.tv_work_naturejob)
     TextView tv_work_naturejob;
     @BindView(R.id.tv_pp)
     TextView tv_pp;
 
-    private int pageNum = 1;
+    @BindView(R.id.tv_search)
+    TextView tv_search;
+    @BindView(R.id.edt_search_result)
+    EditText edt_search_result;
 
+    private int pageNum = 1;
 
     private spjgAdapter detailAdapter;
 
@@ -74,12 +74,10 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
     private MyOkHttp mMyOkhttp;
     private String token;
 
-
     @Override
     protected int setLayout() {
         return R.layout.activity_spjg;
     }
-
 
     @Override
     protected void setView() {
@@ -90,10 +88,8 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
 
     private void initview() {
         txtTitle.setText("审批结果查询");
-        layout_gg.setVisibility(View.GONE);
         tv_pp.setText("审批状态");
         tv_work_naturejob.setText("产品名称");
-
 
         mPtrFrameLayout.disableWhenHorizontalMove(true);
         mPtrFrameLayout.setPtrHandler(new PtrHandler() {
@@ -109,7 +105,7 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 pageNum = 1;
-                getData(pageNum);
+                getData(pageNum,"");
 
             }
         });
@@ -128,14 +124,14 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             @Override
             public void onLoadMoreRequested() {
                 Log.e("TAG","点击重新加载数据");
-                getData(pageNum);
+                getData(pageNum,"");
             }
         }, mRecyclerView);
 
     }
 
     //获取网络数据
-    private void getData(final int num) {
+    private void getData(final int num,String s) {
 
         JSONObject jsonObject = new JSONObject();
 
@@ -143,6 +139,7 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             jsonObject.put("page", num+"");
             jsonObject.put("size", "30");
             jsonObject.put("token", token);
+            jsonObject.put("cpmc", s);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -153,7 +150,7 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 .enqueue(new GsonResponseHandler<cpInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
-
+                        hideLoadingDialog();
                         Log.e("TAG","error_msg"+error_msg);
 
                         if(num > 1){
@@ -167,6 +164,7 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                     @Override
                     public void onSuccess(int statusCode, cpInfo response) {
 
+                        hideLoadingDialog();
                         if(response.getErrorcode().equals("9999")){
 
                             if(num > 1){//上拉加载
@@ -264,29 +262,43 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
         }
     }
 
-
     @Override
     protected void setData() {
-        getData(1);
+        getData(pageNum,"");
     }
 
-
-
-    @OnClick({R.id.btnback})
+    @OnClick({R.id.btnback,R.id.tv_search})
     public void onClick(View v) {
         switch (v.getId()){
 
             case R.id.btnback:
                 finish();
                 break;
+            case R.id.tv_search:
+                showLoadingDialog("正在搜索..");
+                String s = edt_search_result.getText().toString();
+                getData(1,s);
+
+                break;
 
 
+            default:
+                break;
 
         }
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+        cpInfo.DataBean.ContentBean item = (cpInfo.DataBean.ContentBean) adapter.getItem(position);
+        String status = item.getStatus();
+        if("2".equals(status)||"1".equals(status)){
+            return;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("cpinfo",item);
+        toClass(this,ShenPiXiangQingActivity.class,bundle);
 
     }
 

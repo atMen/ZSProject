@@ -2,7 +2,7 @@
     <string name="app_name">安塞产品追溯</string>
 
     <string name="music">首页</string>
-    <string name="backup">搜索</string>
+    <string name="backup">产品搜索</string>
     <string name="friends">企业资源库</string>
     <string name="setting">我的</string>
 
@@ -12,7 +12,7 @@
     <string name="data_failed">数据加载失败</string>
     <string name="data_nomore">暂无更多数据</string>
     <string name="text_nonet">网络异常！</string>
-    <string name="text_retry">点击重试</string>
+    <string name="text_retry">数据加载失败，请点击重试</string>
     <string name="load_failed">没有更多数据啦！点击刷新</string>
     <string name="please_input_limit_pwd">请输入数字或字母</string>
 </resources>

@@ -59,7 +59,6 @@ public class ShowImageUtils {
                 .apply(new RequestOptions()
                         .placeholder(R.drawable.ic_placeholder)
                         .error(R.drawable.ic_placeholder)
-                        .centerCrop()
                         .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(imageView);

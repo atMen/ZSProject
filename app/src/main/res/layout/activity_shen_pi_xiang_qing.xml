@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/appbg"
+    >
+
+    <include layout="@layout/title"/>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_yes"
+        android:orientation="vertical"
+        android:background="@drawable/card_bg"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:id="@+id/iv_yes"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/spjg_yes"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:layout_below="@+id/iv_yes"
+            android:layout_centerHorizontal="true"
+            android:text="已通过"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginBottom="20dp"
+            android:layout_above="@+id/tv_yes"
+            android:layout_centerInParent="true"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:id="@+id/tv_yes"
+            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123321-321123-321321"
+            />
+
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_no"
+        android:orientation="vertical"
+        android:background="@drawable/card_bg"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:id="@+id/iv_no"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/spjg_no"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:textSize="20sp"
+            android:layout_below="@+id/iv_no"
+            android:layout_centerHorizontal="true"
+            android:text="未通过"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+       、
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="123321-321123-321321"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

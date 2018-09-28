@@ -38,6 +38,7 @@ public class UpdateZSActivity extends Activity implements View.OnClickListener {
     EditText edt_work_datetime;
     Button btn_tj;
     ImageView iv_close;
+    private TextView name;
 
     cpInfo.DataBean.ContentBean cpinfo;
     private MyOkHttp mMyOkhttp;
@@ -61,10 +62,11 @@ public class UpdateZSActivity extends Activity implements View.OnClickListener {
     private void findview() {
 
         edt_work_datetime = findViewById(R.id.edt_work_datetime);
-
+        name = findViewById(R.id.name);
         btn_tj = findViewById(R.id.btn_tj);
         iv_close = findViewById(R.id.iv_close);
 
+        name.setText("产品名称："+cpinfo.getCpmc());
         btn_tj.setOnClickListener(this);
         iv_close.setOnClickListener(this);
     }

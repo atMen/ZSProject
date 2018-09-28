@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    app:cardBackgroundColor="@color/white"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="5dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="5dp">
+
+    <LinearLayout
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <RelativeLayout
+
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/cpname"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="产品名称：苹果"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/cptime"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="5dp"
+        android:id="@+id/dotted_line"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/bg_dotted_line"
+        android:layerType="software"
+        />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:id="@+id/simple_text"
+        android:layout_width="match_parent"
+        android:textColor="@color/black"
+        android:text="代理商名称："
+        android:layout_height="wrap_content"
+        />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/tv_dls"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="代理商名称"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:text="销售渠道："
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/tv_xsqd"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="销售渠道"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/appbg"
+        />
+
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="16sp"
+            android:id="@+id/simple_time"
+            android:layout_width="match_parent"
+            android:text="xxx-xxx-xxx"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="13sp"
+            android:id="@+id/simple_remo"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:text="删除"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back_background"
+
+            />
+
+        <TextView
+            android:visibility="gone"
+            android:background="@drawable/back_background"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/simple_remo"
+            android:textSize="13sp"
+            android:id="@+id/simple_xg"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:text="修改"
+            android:layout_height="wrap_content"
+            />
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+</android.support.v7.widget.CardView>

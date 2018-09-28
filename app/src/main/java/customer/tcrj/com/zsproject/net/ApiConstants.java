@@ -12,6 +12,8 @@ public class ApiConstants {
     //外网  221.11.18.88  traceability
     private static final String URLROOT = "http://221.11.18.88:9999/";
     public static final String ImageURLROOT = "http://221.11.18.88:9999/";//回测
+    public static final String YPTURLROOT = "http://221.11.18.88:9999/web.files";//回测
+
 //    private static final String URLROOT = "http://192.168.20.51:8888/traceability/";
 
 
@@ -93,6 +95,12 @@ public class ApiConstants {
     public static final String addcpjglistinfoApi = URLROOT+"productRest/addProductProcess";
 
     /**
+     * 品加工过程模板数据
+     */
+    public static final String sclcmbApi = URLROOT+"productRest/findAllProductProcessBase";
+
+
+    /**
      * 添加产品信息
      */
     public static final String addcplistinfoApi = URLROOT+"productRest/addProduct";
@@ -115,5 +123,15 @@ public class ApiConstants {
     public static final String updatecpjglistinfoApi = URLROOT+"productRest/updateProductProcess";
 
 
+    /**
+     * 删除产品销售过程
+     */
+    public static final String removecpxslistinfoApi = URLROOT+"productRest/deleteProductChuhuo";
+
+
+    /**
+     * 企业资源库列表
+     */
+    public static final String qyzylistinfoApi = URLROOT+"companyRest/getResourceByCompanyId";
 
 }

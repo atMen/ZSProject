@@ -535,7 +535,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -545,6 +544,7 @@
 
 
                 <LinearLayout
+                    android:layout_margin="5dp"
                     style="@style/bg_item_normal_45"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
@@ -590,8 +590,23 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                style="@style/bg_item_normal_45"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="请选择样品图"
+                    android:textSize="@dimen/font_size_16" />
+            </LinearLayout>
             <android.support.v7.widget.RecyclerView
-                android:layout_marginBottom="30dp"
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -599,6 +614,88 @@
                 android:layout_marginTop="3dp"
                 android:overScrollMode="never" />
 
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                style="@style/bg_item_normal_45"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="请选择宣传图"
+                    android:textSize="@dimen/font_size_16" />
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+
+                android:id="@+id/recycler_xctp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:overScrollMode="never" />
+
+            <LinearLayout
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                style="@style/bg_item_normal_45"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="请选宣传视频"
+                    android:textSize="@dimen/font_size_16" />
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_marginBottom="30dp"
+                    android:id="@+id/sp_media"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/card_bg"
+                    android:gravity="center"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                    <ImageView
+                        android:id="@+id/iv_video_screenshot"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerInParent="true"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/iv_btn"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/video_03"
+                        />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/delete"
+                    android:visibility="gone"
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/delet_zhaopian_1x"
+                    />
+
+            </FrameLayout>
 
             <Button
                 android:layout_alignParentBottom="true"
@@ -609,7 +706,7 @@
                 android:text="提交"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_16"
-                android:textStyle="bold" />
+                 />
 
         </LinearLayout>
     </ScrollView>

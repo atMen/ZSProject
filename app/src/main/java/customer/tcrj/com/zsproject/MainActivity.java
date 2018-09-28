@@ -20,6 +20,7 @@ import com.jaeger.library.StatusBarUtil;
 import customer.tcrj.com.zsproject.Utils.AppManager;
 import customer.tcrj.com.zsproject.first.FirstFragment;
 import customer.tcrj.com.zsproject.mine.MineFragment;
+import customer.tcrj.com.zsproject.resources.NewResourcesFragment;
 import customer.tcrj.com.zsproject.resources.ResourcesFragment;
 import customer.tcrj.com.zsproject.search.SearchFragment;
 import customer.tcrj.com.zsproject.widget.BottomNavigationViewHelper;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private MineFragment mineFragment;
     private FirstFragment newsFragment;
     private SearchFragment settingFragment;
-    private ResourcesFragment djFragment;
+    private NewResourcesFragment djFragment;
 
     private TextView poiat;
 
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case 2:
                 if (djFragment == null) {
-                    djFragment = new ResourcesFragment();
+                    djFragment = new NewResourcesFragment();
                     transaction.add(R.id.contentContainer, djFragment);
                 } else {
                     transaction.show(djFragment);

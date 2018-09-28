@@ -7,13 +7,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- 必选-->
+    <!-- 必选 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取网络状态 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络通信-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />  <!-- 获取设备信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取MAC地址-->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络通信 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 获取设备信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取MAC地址 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 读写sdcard，storage等等 -->
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:name=".MyApp"
@@ -24,11 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar1"
         tools:replace="android:icon, android:theme">
-
         <meta-data
             android:name="PGYER_APPID"
-            android:value="9f9d29b522da75060bf0e0b55522eacf" >
-        </meta-data>
+            android:value="9f9d29b522da75060bf0e0b55522eacf" />
 
         <activity
             android:name=".LoginActivity"
@@ -107,8 +105,19 @@
             android:name=".first.JdInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".first.SCLCMBActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".first.XSLCwriteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name=".resources.ImageActivity" />
-        <activity android:name=".first.DlsActivity"></activity>
+        <activity android:name=".first.DlsActivity" />
+        <activity android:name=".first.ShenPiXiangQingActivity" />
+        <activity android:name=".first.AddResourcesActivity" />
+        <activity android:name=".resources.ResourcesInfoActivity"></activity>
     </application>
 
 </manifest>

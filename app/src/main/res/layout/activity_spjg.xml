@@ -11,7 +11,7 @@
     <include layout="@layout/item_select"
         android:visibility="gone"
         />
-
+    <include layout="@layout/item_search"/>
 
         <in.srain.cube.views.ptr.PtrClassicFrameLayout
             android:id="@+id/mPtrFrameLayout"

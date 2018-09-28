@@ -240,17 +240,13 @@ public class CPinfoActivity extends BaseActivity implements View.OnClickListener
                     Log.e("TAG","测试："+(linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1));
                 }
             }, 1000);
-
-
         }
     }
-
 
     @Override
     protected void setData() {
         getData(1);
     }
-
 
     @OnClick({R.id.btnback})
     public void onClick(View v) {
@@ -267,7 +263,6 @@ public class CPinfoActivity extends BaseActivity implements View.OnClickListener
                 break;
             default:
                 break;
-
 
         }
     }
@@ -292,7 +287,6 @@ public class CPinfoActivity extends BaseActivity implements View.OnClickListener
 
                 default:
                     break;
-
             }
         }
     }

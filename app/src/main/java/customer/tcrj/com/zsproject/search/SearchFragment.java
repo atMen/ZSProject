@@ -160,14 +160,10 @@ public class SearchFragment extends BaseFragment implements BaseQuickAdapter.OnI
                             }
 
                         }else if(response.getErrorcode().equals("204")){
-
                             Utils.toLogin(mContext);
                         }
-
-
                     }
                 });
-
     }
 
     //上拉加载更多数据
@@ -258,7 +254,6 @@ public class SearchFragment extends BaseFragment implements BaseQuickAdapter.OnI
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_search:
-
                 showLoadingDialog("正在搜索..");
                 String s = edt_search_result.getText().toString();
                 getData(1,s);

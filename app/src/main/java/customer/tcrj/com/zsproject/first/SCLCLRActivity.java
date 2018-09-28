@@ -45,7 +45,7 @@ public class SCLCLRActivity extends BaseActivity {
 
     private FragmentManager fragmentManager;
     private SCLCFragment newsFragment;
-    private NewXSLCFragment settingFragment;
+    private NewXCLCFragment settingFragment;
 
     String status;
     String productId;
@@ -125,11 +125,14 @@ public class SCLCLRActivity extends BaseActivity {
                 break;
             case 1:
                 if (settingFragment == null) {
-                    settingFragment = new NewXSLCFragment(cpmc,productId,status);
+                    settingFragment = new NewXCLCFragment(cpmc,productId,status);
                     transaction.add(R.id.contentContainer, settingFragment);
                 } else {
                     transaction.show(settingFragment);
                 }
+                break;
+
+            default:
                 break;
 
         }

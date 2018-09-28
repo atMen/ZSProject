@@ -8,6 +8,7 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tsy.sdk.myokhttp.MyOkHttp;
@@ -20,9 +21,11 @@ import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import customer.tcrj.com.zsproject.Media.VideoPlayerActivity;
 import customer.tcrj.com.zsproject.MyApp;
 import customer.tcrj.com.zsproject.R;
 import customer.tcrj.com.zsproject.Utils.ACache;
+import customer.tcrj.com.zsproject.Utils.ShowImageUtils;
 import customer.tcrj.com.zsproject.Utils.Utils;
 import customer.tcrj.com.zsproject.base.BaseActivity;
 import customer.tcrj.com.zsproject.bean.cpInfo;
@@ -60,6 +63,20 @@ public class CPListInfoActivity extends BaseActivity  {
     HtmlTextView htmlTextView;
     @BindView(R.id.num)
     TextView num;
+    @BindView(R.id.ypt_icon)
+    ImageView ypt_icon;
+    @BindView(R.id.xct_icon)
+    ImageView xct_icon;
+
+    @BindView(R.id.ll_ypt)
+    LinearLayout ll_ypt;
+    @BindView(R.id.ll_xct)
+    LinearLayout ll_xct;
+    @BindView(R.id.ll_xcsp)
+    LinearLayout ll_xcsp;
+
+
+
 
     @BindView(R.id.txtTitle)
     TextView txtTitle;
@@ -238,8 +255,13 @@ public class CPListInfoActivity extends BaseActivity  {
                     public void onSuccess(int statusCode, dicBean response) {
                         hideLoadingDialog();
                         if(response.getErrorcode().equals("9999")){
-                             cplxname = response.getData().getName();
-                            tv06.setText(response.getData().getName());
+
+                            dicBean.DataBean data = response.getData();
+                            if(data != null){
+                                cplxname = response.getData().getName();
+                                tv06.setText(response.getData().getName());
+                            }
+
 
                         }else if(response.getErrorcode().equals("204")){
 
@@ -279,8 +301,13 @@ public class CPListInfoActivity extends BaseActivity  {
                         Log.e("TAG","error_msg"+response.getErrorcode());
                         hideLoadingDialog();
                         if(response.getErrorcode().equals("9999")){
-                             zsfsname = response.getData().getName();
-                            tv07.setText(response.getData().getName());
+
+                            dicBean.DataBean data = response.getData();
+                            if(data != null){
+                                zsfsname = response.getData().getName();
+                                tv07.setText(response.getData().getName());
+                            }
+
 
                         }else if(response.getErrorcode().equals("204")){
 
@@ -320,8 +347,13 @@ public class CPListInfoActivity extends BaseActivity  {
                         Log.e("TAG","error_msg"+response.getErrorcode());
                         hideLoadingDialog();
                         if(response.getErrorcode().equals("9999")){
-                            zsywlxname = response.getData().getName();
-                            tv08.setText(response.getData().getName());
+
+                            dicBean.DataBean data = response.getData();
+                            if(data != null){
+                                zsywlxname = response.getData().getName();
+                                tv08.setText(response.getData().getName());
+                            }
+
 
                         }else if(response.getErrorcode().equals("204")){
 
@@ -335,6 +367,9 @@ public class CPListInfoActivity extends BaseActivity  {
     }
     String jdmc;
     private void setCpInfo(cpInfoXq.DataBean cpinfo) {
+
+
+
         if(cpinfo != null){
             cpname.setText("产品名称："+cpinfo.getCpmc());
             jdmc = cpinfo.getJdmc();
@@ -345,9 +380,33 @@ public class CPListInfoActivity extends BaseActivity  {
             tv05.setText(cpinfo.getBxq());
             tv09.setText(cpinfo.getEwmsl());
 
+            String ypt = cpinfo.getYpt();
+            if(ypt != null && !"".equals(ypt)){
+                ll_ypt.setVisibility(View.VISIBLE);
+                ShowImageUtils.LoadImage(this,ApiConstants.YPTURLROOT+cpinfo.getYpt().replace("\\","/"), ypt_icon);
+            }
+
+            String xct = cpinfo.getXctp();
+            if(xct != null && !"".equals(xct)){
+                ll_xct.setVisibility(View.VISIBLE);
+                ShowImageUtils.LoadImage(this,ApiConstants.YPTURLROOT+cpinfo.getXctp().replace("\\","/"), xct_icon);
+            }
+
+            String xcsp = cpinfo.getXcsp();
+            if(xcsp != null && !"".equals(xcsp)){
+                ll_xcsp.setVisibility(View.VISIBLE);
+                Log.e("TAG","视频地址："+xcsp);
+
+//                Bundle bundle = new Bundle();
+//                bundle.putString("path",xcsp);
+//                toClass(this,VideoPlayerActivity.class,bundle);
+            }
+
             htmlTextView.setHtml(cpinfo.getCpms(),
                     new HtmlHttpImageGetter(htmlTextView));
         }
 
     }
 }
+
+

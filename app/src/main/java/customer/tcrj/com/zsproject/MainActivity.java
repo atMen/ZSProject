@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     //定义一个变量，
     //来标识是否退出
-    private static boolean isExit = false;
+    private  boolean isExit = false;
     Handler mHandler = new Handler() {
 
         @Override

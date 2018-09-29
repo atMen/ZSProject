@@ -10,7 +10,8 @@
     <customer.tcrj.com.zsproject.widget.SuperScrollView
         android:layout_below="@+id/titleid"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:scrollbars="none">
 
         <LinearLayout
@@ -264,22 +265,20 @@
             </LinearLayout>
 
 
-            <Button
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/btn_true"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/bg_btn_background"
-                android:text="删除"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
+
 
 
 
         </LinearLayout>
     </customer.tcrj.com.zsproject.widget.SuperScrollView>
 
-
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btn_true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:text="删除"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
 </LinearLayout>

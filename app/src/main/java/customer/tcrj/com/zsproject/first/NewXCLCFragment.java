@@ -228,8 +228,6 @@ public class NewXCLCFragment extends BaseFragment implements BaseQuickAdapter.On
 
         if (response == null  || response.size() <= 0) {
 
-
-
             if(mPtrFrameLayout != null){
                 mPtrFrameLayout.refreshComplete();
             }
@@ -304,7 +302,7 @@ public class NewXCLCFragment extends BaseFragment implements BaseQuickAdapter.On
 
             case R.id.btn_tj:
 
-                toClass(mContext,DialogmsgActivity.class);
+//                toClass(mContext,DialogmsgActivity.class,null,REQUESTCODE);
                 break;
 
 

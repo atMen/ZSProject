@@ -33,8 +33,10 @@ import customer.tcrj.com.zsproject.bean.cpInfoXq;
 import customer.tcrj.com.zsproject.bean.dicBean;
 import customer.tcrj.com.zsproject.bean.xslcCxInfo;
 import customer.tcrj.com.zsproject.net.ApiConstants;
+import customer.tcrj.com.zsproject.videoview.CpInfoVideoViewActivity;
+import customer.tcrj.com.zsproject.videoview.VideoViewActivity;
 
-public class CPListInfoActivity extends BaseActivity  {
+public class CPListInfoActivity extends BaseActivity {
 
     private static final int CPREQUESTCODE = 001;
     @BindView(R.id.cpname)
@@ -136,12 +138,25 @@ public class CPListInfoActivity extends BaseActivity  {
 
 
 
-    @OnClick({R.id.btnback,R.id.num})
+    @OnClick({R.id.btnback,R.id.num,R.id.ll_xcsp})
     public void onClick(View v) {
+
+
+
 
         switch (v.getId()){
 
+            case R.id.ll_xcsp:
+
+                String videopath = ApiConstants.ImageURLROOT + cpinfo.getXcsp().replace("\\", "/");
+                Bundle videobundle = new Bundle();
+                videobundle.putString("cover",videopath);
+                toClass(this,CpInfoVideoViewActivity.class,videobundle);
+                break;
+
             case R.id.btnback:
+
+
 
                 finish();
                 break;
@@ -407,6 +422,12 @@ public class CPListInfoActivity extends BaseActivity  {
         }
 
     }
+
+
+
+
+
+
 }
 
 

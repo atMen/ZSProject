@@ -113,6 +113,18 @@
             android:name=".first.XSLCwriteActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".videoview.VideoViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".videoview.CpInfoVideoViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
+
+
         <activity android:name=".resources.ImageActivity" />
         <activity android:name=".first.DlsActivity" />
         <activity android:name=".first.ShenPiXiangQingActivity" />

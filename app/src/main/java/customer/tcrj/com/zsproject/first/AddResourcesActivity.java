@@ -3,6 +3,7 @@ package customer.tcrj.com.zsproject.first;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -136,8 +137,11 @@ public class AddResourcesActivity extends BaseActivity {
             case R.id.btn_true:
 
                 if(!TextUtils.isEmpty(edt_cpname.getText().toString()) && path != null){
-                    showLoadingDialog("正在上传资料内容..");
-                    upLoadeData(path,edt_cpname.getText().toString(),edt_today_plan.getText().toString());
+//                    showLoadingDialog("正在上传资料内容..");
+
+
+                    new MyAsyncTask().execute(1);
+//                    upLoadeData(path,edt_cpname.getText().toString(),edt_today_plan.getText().toString());
                 }else {
                     T("请将信息填写完整");
                 }
@@ -176,9 +180,9 @@ public class AddResourcesActivity extends BaseActivity {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("token",token);
-            jsonObject.put("clmc", mc);
+            jsonObject.put("clmc", edt_cpname.getText().toString());
             jsonObject.put("cllx", (isvideo)?"10402":"10401");
-            jsonObject.put("clms", ms);
+            jsonObject.put("clms", edt_today_plan.getText().toString());
             jsonObject.put("fileName", (isvideo)? UUID.randomUUID()+time+".mp4" : UUID.randomUUID()+time+".jpg");
             jsonObject.put("file", file);
         } catch (JSONException e) {
@@ -339,7 +343,6 @@ public class AddResourcesActivity extends BaseActivity {
         }
     }
 
-
     public void onAddPicClick() {
         // 进入相册 以下是例子：不需要的api可以不写
         PictureSelector.create(this)
@@ -379,4 +382,58 @@ public class AddResourcesActivity extends BaseActivity {
                 //.recordVideoSecond()//录制视频秒数 默认60s
                 .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
     }
+
+
+    public class MyAsyncTask extends AsyncTask<Integer, String, String> {
+        public MyAsyncTask() {
+            super();
+        }
+
+        //该方法运行在UI线程当中,并且运行在UI线程当中 可以对UI空间进行设置
+        @Override
+        protected void onPreExecute() {
+            showLoadingDialog("正在努力上传...");
+        }
+
+        @Override
+        protected String doInBackground(Integer... integers) {
+            Log.e("xxxxxx","xxxxxxexecute传入参数="+integers[0]);
+
+            String base64File = null;
+            try {
+                base64File = Utils.encodeBase64File(path);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return base64File;
+        }
+        /**
+         * 这里的String参数对应AsyncTask中的第三个参数（也就是接收doInBackground的返回值）
+         * 在doInBackground方法执行结束之后在运行，并且运行在UI线程当中 可以对UI空间进行设置
+         */
+        @Override
+        protected void onPostExecute(String result) {
+            Log.e("TAG","线程结束"+result);
+
+            String time = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss",
+                    Locale.getDefault()).format(System.currentTimeMillis());
+            if(result != null){
+                getDataFromNet(edt_cpname.getText().toString(),edt_today_plan.getText().toString(),result,time);
+            }
+        }
+
+        /**
+         * 这里的Intege参数对应AsyncTask中的第二个参数
+         * 在doInBackground方法当中，，每次调用publishProgress方法都会触发onProgressUpdate执行
+         * onProgressUpdate是在UI线程中执行，所有可以对UI空间进行操作
+         */
+        @Override
+        protected void onProgressUpdate(String... values) {
+            String vlaue = values[0]+"";
+            Log.e("TAG","xxxxxx vlaue="+vlaue);
+        }
+    }
+
+
 }

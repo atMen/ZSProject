@@ -74,37 +74,6 @@
             </RelativeLayout>
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gary_line"
-                />
-
-            <RelativeLayout
-                android:background="@drawable/bg_rl_mine"
-                android:id="@+id/rl_about"
-                android:padding="18dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="退出登录"
-                    android:drawableLeft="@drawable/zxdl"
-                    android:gravity="center"
-                    android:drawablePadding="10dp"
-                    android:layout_marginLeft="10dp"
-                    />
-                <ImageView
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:background="@drawable/img_more"
-                    />
-            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -125,6 +94,39 @@
                     android:layout_height="wrap_content"
                     android:text="检查新版本"
                     android:drawableLeft="@drawable/updata"
+                    android:gravity="center"
+                    android:drawablePadding="10dp"
+                    android:layout_marginLeft="10dp"
+                    />
+                <ImageView
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/img_more"
+                    />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gary_line"
+                />
+
+            <RelativeLayout
+                android:background="@drawable/bg_rl_mine"
+                android:id="@+id/rl_about"
+                android:padding="18dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="退出登录"
+                    android:drawableLeft="@drawable/zxdl"
                     android:gravity="center"
                     android:drawablePadding="10dp"
                     android:layout_marginLeft="10dp"

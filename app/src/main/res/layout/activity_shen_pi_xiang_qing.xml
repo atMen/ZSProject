@@ -37,6 +37,7 @@
             android:layout_height="wrap_content" />
 
         <ImageView
+            android:id="@+id/iv_ewm"
             android:layout_marginBottom="20dp"
             android:layout_above="@+id/tv_yes"
             android:layout_centerInParent="true"
@@ -52,13 +53,10 @@
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="123321-321123-321321"
+            android:text=""
             />
 
-
     </RelativeLayout>
-
-
 
     <RelativeLayout
         android:visibility="gone"
@@ -97,7 +95,7 @@
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="123321-321123-321321"
+            android:text=""
             />
 
 

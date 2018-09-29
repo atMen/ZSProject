@@ -57,7 +57,7 @@
             android:background="@drawable/bg_dialog_leftbutton"
             android:gravity="center"
             android:text="确定"
-            android:textColor="@color/red"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <View
@@ -75,6 +75,7 @@
             android:gravity="center"
             android:text="取消"
             android:textColor="@color/red"
+
             android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

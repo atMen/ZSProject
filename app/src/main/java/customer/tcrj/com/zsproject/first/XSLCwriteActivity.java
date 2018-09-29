@@ -193,17 +193,16 @@ public class XSLCwriteActivity extends BaseActivity {
         contentBean.setChsj(chsj);
         contentBean.setDlsmc(dlsName);
         contentBean.setQdmc(qdName);
+        contentBean.setCpmc(cpmc);
 
         intent.putExtra("three", contentBean);
 
 //            intent.putExtra("three", three); //将计算的值回传回去
         //通过intent对象返回结果，必须要调用一个setResult方法，
 
-        if(isadd){
-            setResult(2, intent);
-        }else {
-            setResult(3, intent);
-        }
+
+        setResult(2, intent);
+
 
 
         finish(); //结束当前的activity的生命周期

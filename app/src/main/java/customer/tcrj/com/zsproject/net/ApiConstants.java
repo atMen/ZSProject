@@ -14,7 +14,7 @@ public class ApiConstants {
     public static final String ImageURLROOT = "http://221.11.18.88:9999/";//回测
     public static final String YPTURLROOT = "http://221.11.18.88:9999/web.files";//回测
 
-//    private static final String URLROOT = "http://192.168.20.51:8888/traceability/";
+    public static final String EWMURLROOT = "http://221.11.18.88:9999/front/product/showProduct.chtml?productId=";
 
 
     /**
@@ -133,5 +133,11 @@ public class ApiConstants {
      * 企业资源库列表
      */
     public static final String qyzylistinfoApi = URLROOT+"companyRest/getResourceByCompanyId";
+
+
+    /**
+     * 企业资源库删除
+     */
+    public static final String qyzydeleinfoApi = URLROOT+"companyRest/deletetResourceById";
 
 }

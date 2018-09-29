@@ -1,4 +1,5 @@
 package customer.tcrj.com.zsproject.first;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -6,8 +7,10 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import customer.tcrj.com.zsproject.R;
+import customer.tcrj.com.zsproject.Utils.QRCodeUtil;
 import customer.tcrj.com.zsproject.base.BaseActivity;
 import customer.tcrj.com.zsproject.bean.cpInfo;
+import customer.tcrj.com.zsproject.net.ApiConstants;
 
 public class ShenPiXiangQingActivity extends BaseActivity {
 
@@ -20,6 +23,8 @@ public class ShenPiXiangQingActivity extends BaseActivity {
     TextView txtTitle;
     @BindView(R.id.btnback)
     ImageView btnback;
+    @BindView(R.id.iv_ewm)
+    ImageView iv_ewm;
 
     private cpInfo.DataBean.ContentBean cpinfo;
     @Override
@@ -41,7 +46,8 @@ public class ShenPiXiangQingActivity extends BaseActivity {
 
     @Override
     protected void setData() {
-
+        Bitmap mBitmap = QRCodeUtil.createQRCodeBitmap(ApiConstants.EWMURLROOT+cpinfo.getId(), 480, 480);
+        iv_ewm.setImageBitmap(mBitmap);
     }
 
     @OnClick({R.id.btnback})

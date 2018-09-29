@@ -50,24 +50,23 @@ public class MineFragment extends BaseFragment {
     private void showUpdateDialog() {
 
         final SweetAlertDialog sad = new SweetAlertDialog(getActivity());
-        sad.setTitleText("注销登录");
+        sad.setTitleText("退出登录");
         sad.setContentText("您确定要进行注销操作吗？");
-        sad.setConfirmText("确定");
-        sad.setCancelText("取消");
+        sad.setConfirmText("取消");
+        sad.setCancelText("确定");
         sad.setCanceledOnTouchOutside(true);
         sad.setCancelable(true);
         sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
                 sad.dismiss();
-
-
+                sureZX();
             }
         });
         sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                sureZX();
+
                 sad.dismiss();
 
             }
@@ -143,7 +142,7 @@ public class MineFragment extends BaseFragment {
                     public void onNoUpdateAvailable() {
                         hideLoadingDialog();
 
-                        Toast.makeText(getActivity(), "当前为最新版本", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, "当前为最新版本", Toast.LENGTH_LONG).show();
 
                     }
                 });

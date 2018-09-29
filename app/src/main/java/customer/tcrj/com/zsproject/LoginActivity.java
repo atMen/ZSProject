@@ -107,14 +107,17 @@ public class LoginActivity extends BaseActivity {
                     @Override
                     public void onSuccess(int statusCode, loginInfo response) {
                         hideLoadingDialog();
-                        T(response.getMessage());
+
                         Log.e("TAG","getErrorcode:"+response.getErrorcode());
                         if("9999".equals(response.getErrorcode())){
+                            T("登录成功");
                             Log.e("TAG","成功");
                             ACache.get(LoginActivity.this).put("psw",psw);
                             ToCache(response.getData());
                             toClass(LoginActivity.this,MainActivity.class);
                             finish();
+                        }else {
+                            T(response.getMessage());
                         }
                     }
                 });

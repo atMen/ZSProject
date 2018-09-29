@@ -106,7 +106,8 @@ public class MdifyPswActivity extends BaseActivity implements View.OnClickListen
 
                     @Override
                     public void onSuccess(int statusCode, loginInfo response) {
-                        showUpdateDialog(response.getMessage(),2);
+                        T(response.getMessage());
+                        finish();
                     }
                 });
     }

@@ -1,6 +1,7 @@
 package customer.tcrj.com.zsproject.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,6 +36,7 @@ public class spjgAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
 
     @Override
     protected void convert(final BaseViewHolder helper, cpInfo.DataBean.ContentBean item) {
+        TextView view = (TextView)helper.getView(R.id.spjg_state);
         Log.e("TAG","item:"+item);
         String status = item.getStatus();
         String statusName;
@@ -42,13 +44,17 @@ public class spjgAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
             statusName = "待提交";
         }else  if("2".equals(status)){
             statusName = "审批中";
+            view.setTextColor(Color.YELLOW);
         }else  if("3".equals(status)){
             statusName = "已通过";
+            view.setTextColor(Color.GREEN);
         }else {
             statusName = "未通过";
+            view.setTextColor(Color.RED);
         }
+
         helper.setText(R.id.cpname, "产品名称："+item.getCpmc());
-        helper.setText(R.id.spjg_state, statusName);
+        view.setText(statusName);
         helper.setText(R.id.spjg_bh, "编号："+item.getBzbh());
 
         helper.setText(R.id.spjg_pp, item.getCppp());

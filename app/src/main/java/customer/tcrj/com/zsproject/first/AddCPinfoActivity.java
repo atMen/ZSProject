@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,8 +31,10 @@ import org.json.JSONObject;
 import org.sufficientlysecure.htmltextview.HtmlHttpImageGetter;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -56,7 +59,7 @@ import customer.tcrj.com.zsproject.widget.FullyGridLayoutManager;
 
 public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListener {
 
-    public static final int REQUESTCODE = 003;
+    private static final int REQUESTCODE = 003;
     private static final int JDCODE = 001;
     private static final int XCTCODE = 002;
     private List<LocalMedia> selectList = new ArrayList<>();
@@ -288,30 +291,10 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                         //样品图上传
                         if (path != null) {
                             btn_submit.setEnabled(false);
-//                            btn_submit.setText("正在提交信息...");
-//                            btn_submit.setBackgroundColor(getResources().getColor(R.color.word_7373));
-                            try {
-                                base64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(path);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
 
-                            //宣传图上传
-                            try {
-                                Xctbase64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(Xctpath);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                           new MyAsyncTask().execute(1);
 
-                            //宣传视频上传
-                            try {
-                                Xcspbase64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(videopath);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-
-                            addData();//上传产品信息
+//                            addData();//上传产品信息
                         } else {
                             T("请录入产品样品图");
                         }
@@ -410,7 +393,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     private void addData() {
 
 
-        showLoadingDialog("正在保存数据...");
+//        showLoadingDialog("正在保存数据...");
         String cpname = edt_cpname.getText().toString().trim();
         String edtcppp = edt_cppp.getText().toString().trim();
         String edtcpbcgg = edt_cpbcgg.getText().toString().trim();
@@ -693,7 +676,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         return (scrollY > 0) || (scrollY < scrollDifference - 1);
     }
 
-
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         //触摸的是EditText并且当前EditText可以滚动则将事件交给EditText处理；否则将事件交由其父类处理
@@ -706,5 +688,69 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         return false;
     }
 
+    public class MyAsyncTask extends AsyncTask<Integer, String, String> {
+        public MyAsyncTask() {
+            super();
+        }
+
+        //该方法运行在UI线程当中,并且运行在UI线程当中 可以对UI空间进行设置
+        @Override
+        protected void onPreExecute() {
+            showLoadingDialog("正在提交产品信息...");
+        }
+
+        @Override
+        protected String doInBackground(Integer... integers) {
+            Log.e("xxxxxx","xxxxxxexecute传入参数="+integers[0]);
+
+            try {
+                base64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(path);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //宣传图上传
+            try {
+                Xctbase64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(Xctpath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            //宣传视频上传
+            try {
+                Xcspbase64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(videopath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            return base64File;
+        }
+        /**
+         * 这里的String参数对应AsyncTask中的第三个参数（也就是接收doInBackground的返回值）
+         * 在doInBackground方法执行结束之后在运行，并且运行在UI线程当中 可以对UI空间进行设置
+         */
+        @Override
+        protected void onPostExecute(String result) {
+            Log.e("TAG","线程结束"+result);
+
+            String time = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss",
+                    Locale.getDefault()).format(System.currentTimeMillis());
+            if(result != null){
+                addData();
+            }
+        }
+
+        /**
+         * 这里的Intege参数对应AsyncTask中的第二个参数
+         * 在doInBackground方法当中，，每次调用publishProgress方法都会触发onProgressUpdate执行
+         * onProgressUpdate是在UI线程中执行，所有可以对UI空间进行操作
+         */
+        @Override
+        protected void onProgressUpdate(String... values) {
+            String vlaue = values[0]+"";
+            Log.e("TAG","xxxxxx vlaue="+vlaue);
+        }
+    }
 
 }

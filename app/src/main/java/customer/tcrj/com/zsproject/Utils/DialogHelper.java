@@ -17,9 +17,11 @@ public class DialogHelper {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.layout_dialog, null);
         dialog.setContentView(view);
+        dialog.setCanceledOnTouchOutside(false);
         Window window = dialog.getWindow();
         window.setGravity(Gravity.CENTER);
         window.setDimAmount(0.1f);
+//        dialog.setCancelable(false);//点击返回键不消失
         return dialog;
     }
 }

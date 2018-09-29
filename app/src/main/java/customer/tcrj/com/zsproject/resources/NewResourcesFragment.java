@@ -35,6 +35,7 @@ import customer.tcrj.com.zsproject.bean.resourcesInfo;
 import customer.tcrj.com.zsproject.first.AddResourcesActivity;
 import customer.tcrj.com.zsproject.first.CPListInfoActivity;
 import customer.tcrj.com.zsproject.net.ApiConstants;
+import customer.tcrj.com.zsproject.videoview.VideoViewActivity;
 import customer.tcrj.com.zsproject.widget.CustomLoadMoreView;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -279,9 +280,15 @@ public class NewResourcesFragment extends BaseFragment implements BaseQuickAdapt
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         resourcesInfo.DataBean item = (resourcesInfo.DataBean) adapter.getItem(position);
+        String cllx = item.getCllx();
         Bundle bundle = new Bundle();
         bundle.putSerializable("qyzyinfo",item);
-        toClass(mContext,ResourcesInfoActivity.class,bundle);
+        if("10402".equals(cllx)){
+            toClass(mContext,VideoViewActivity.class,bundle,RESOURCESCODE);
+        }else if("10401".equals(cllx)){
+            toClass(mContext,ResourcesInfoActivity.class,bundle,RESOURCESCODE);
+        }
+
     }
 
 
@@ -294,6 +301,7 @@ public class NewResourcesFragment extends BaseFragment implements BaseQuickAdapt
 
                 case RESOURCESCODE:
                     Log.e("TAG","onActivityResult  getData");
+                    pageNum = 1;
                     getData(1,"");
                     break;
 

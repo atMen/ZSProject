@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/appbg"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.kk.taurus.playerbase.widget.BaseVideoView
+            android:id="@+id/videoView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#000000"
+            />
+
+    </RelativeLayout>
+    <customer.tcrj.com.zsproject.widget.SuperScrollView
+        android:layout_below="@+id/titleid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:background="@drawable/card_bg"
+                android:id="@+id/layout_work_naturejob"
+                style="@style/bg_item_select_50"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_10"-->
+                    <!--android:src="@mipmap/img_customer_address" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="材料名称："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="请输入"
+                    android:textSize="@dimen/font_size_14"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:background="@drawable/card_bg"
+                style="@style/bg_item_select_50"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_10"-->
+                    <!--android:src="@mipmap/img_customer_address" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="材料类型："
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:id="@+id/edt_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:text="视频"
+                    android:textSize="@dimen/font_size_14"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:background="@drawable/card_bg"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:orientation="vertical">
+
+
+
+                <LinearLayout
+                    android:layout_marginLeft="15dp"
+
+                    style="@style/bg_item_normal_45"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="@dimen/margin_10"-->
+                    <!--android:layout_marginRight="@dimen/padding_5"-->
+                    <!--android:scaleType="fitXY"-->
+                    <!--android:src="@mipmap/img_now_plan" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="材料描述"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:background="@drawable/bg_dotted_line"
+                    android:layerType="software" />
+
+                <TextView
+                    android:id="@+id/edt_today_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:text=""
+                    android:lineSpacingExtra="3dp"
+                    android:minLines="4"
+                    android:padding="@dimen/margin_15"
+                    android:textSize="@dimen/font_size_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="8dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:background="@drawable/card_bg"
+                    android:gravity="center"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/addicon"
+                        />
+
+                </LinearLayout>
+
+
+
+
+                <!--<FrameLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<RelativeLayout-->
+                <!--android:id="@+id/sp_media"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:layout_marginRight="15dp"-->
+                <!--android:background="@drawable/card_bg"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="80dp">-->
+
+
+
+
+                <!--<ImageView-->
+                <!--android:id="@+id/iv_video_screenshot"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:scaleType="fitXY" />-->
+
+                <!--<ImageView-->
+                <!--android:id="@+id/iv_btn"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@mipmap/video_03"-->
+                <!--/>-->
+
+                <!--</RelativeLayout>-->
+
+                <!--<ImageView-->
+                <!--android:id="@+id/delete"-->
+                <!--android:visibility="gone"-->
+                <!--android:layout_gravity="end"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/delet_zhaopian_1x"-->
+                <!--/>-->
+
+                <!--</FrameLayout>-->
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+    </customer.tcrj.com.zsproject.widget.SuperScrollView>
+
+    <Button
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/btn_true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:text="删除"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+</LinearLayout>

@@ -45,7 +45,7 @@ public class zssqAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
     protected void convert(final BaseViewHolder helper, final cpInfo.DataBean.ContentBean item) {
         Log.e("TAG","item:"+item);
         helper.setText(R.id.cpname, "产品名称："+item.getCpmc());
-        helper.setText(R.id.bh, "编号："+item.getBzbh());
+        helper.setText(R.id.bh, "产品流水号(追溯码)："+item.getId());
         helper.setText(R.id.spjg_pp, item.getCppp());
         helper.setText(R.id.gg, item.getCpbcgg());
         helper.setText(R.id.simple_text, item.getEwmsl()+"份");

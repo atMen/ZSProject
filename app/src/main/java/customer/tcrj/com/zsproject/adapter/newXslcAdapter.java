@@ -50,15 +50,10 @@ public class newXslcAdapter extends BaseQuickAdapter<xslcCxInfo.DataBean, BaseVi
         helper.setText(R.id.tv_dls, item.getDlsmc());
         helper.setText(R.id.tv_xsqd, item.getQdmc());
 
-
-
-
-
         TextView remo = helper.getView(R.id.simple_remo);
         TextView xg = helper.getView(R.id.simple_xg);
 
-
-        if(!"1".equals(status)){
+        if(!"1".equals(status) && !"4".equals(status)){
             remo.setVisibility(View.GONE);
             xg.setVisibility(View.GONE);
         }

@@ -106,7 +106,7 @@ public class CPListInfoActivity extends BaseActivity {
     @Override
     protected void setData() {
         cpinfo = (cpInfo.DataBean.ContentBean) getIntent().getSerializableExtra("cpinfo");
-        if("1".equals(cpinfo.getStatus())){
+        if("1".equals(cpinfo.getStatus()) || "4".equals(cpinfo.getStatus())){
             num.setVisibility(View.VISIBLE);
             num.setText("编辑");
         }

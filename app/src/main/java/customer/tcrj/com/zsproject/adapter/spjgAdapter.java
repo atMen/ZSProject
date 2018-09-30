@@ -42,9 +42,10 @@ public class spjgAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
         String statusName;
         if("1".equals(status)){
             statusName = "待提交";
+            view.setTextColor(mContext.getResources().getColor(R.color.login_textcolor));
         }else  if("2".equals(status)){
             statusName = "审批中";
-            view.setTextColor(Color.YELLOW);
+            view.setTextColor(mContext.getResources().getColor(R.color.yellow));
         }else  if("3".equals(status)){
             statusName = "已通过";
             view.setTextColor(Color.GREEN);
@@ -55,7 +56,7 @@ public class spjgAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
 
         helper.setText(R.id.cpname, "产品名称："+item.getCpmc());
         view.setText(statusName);
-        helper.setText(R.id.spjg_bh, "编号："+item.getBzbh());
+        helper.setText(R.id.spjg_bh, "产品流水号(追溯码)："+item.getId());
 
         helper.setText(R.id.spjg_pp, item.getCppp());
         helper.setText(R.id.spjg_gg, item.getCpbcgg()+item.getCpbcggdw());

@@ -38,6 +38,7 @@
             />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/cptime"
             android:textSize="15sp"
             android:layout_width="wrap_content"

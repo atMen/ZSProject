@@ -263,11 +263,15 @@ public class SCLCMBActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.btn_add:
-                Intent i = new Intent();
-                i.putExtra("mc",dlsmc);
-                i.putExtra("ms",dlsid);
-                setResult(3, i);
-                finish();
+
+                if(dlsmc != null){
+                    Intent i = new Intent();
+                    i.putExtra("mc",dlsmc);
+                    i.putExtra("ms",dlsid);
+                    setResult(3, i);
+                    finish();
+                }
+
                 break;
             default:
                 break;
@@ -277,8 +281,8 @@ public class SCLCMBActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-    private String dlsmc;
-    private String dlsid;
+    private String dlsmc = null;
+    private String dlsid= null;
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 

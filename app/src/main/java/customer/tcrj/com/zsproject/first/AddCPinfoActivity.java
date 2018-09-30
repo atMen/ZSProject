@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ import customer.tcrj.com.zsproject.Media.VideoUltls;
 import customer.tcrj.com.zsproject.MyApp;
 import customer.tcrj.com.zsproject.R;
 import customer.tcrj.com.zsproject.Utils.ACache;
+import customer.tcrj.com.zsproject.Utils.ShowImageUtils;
 import customer.tcrj.com.zsproject.Utils.Utils;
 import customer.tcrj.com.zsproject.adapter.GridImageAdapter;
 import customer.tcrj.com.zsproject.adapter.XctGridImageAdapter;
@@ -120,6 +122,20 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     @BindView(R.id.btn_submit)
     Button btn_submit;
 
+
+    @BindView(R.id.ypt_delete)
+    ImageView ypt_delete;
+    @BindView(R.id.xct_delete)
+    ImageView xct_delete;
+    @BindView(R.id.iv_ypt_screenshot)
+    ImageView iv_ypt_screenshot;
+    @BindView(R.id.iv_xct_screenshot)
+    ImageView iv_xct_screenshot;
+    @BindView(R.id.fl_ypt)
+    FrameLayout fl_ypt;
+    @BindView(R.id.fl_xct)
+    FrameLayout fl_xct;
+
     cpInfo.DataBean.ContentBean cpinfo;
 
     private MyOkHttp mMyOkhttp;
@@ -128,6 +144,10 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     private String Xctpath = null;
     private String videopath = null;
     private Bitmap thumbnail;
+    private String zsywlxname;
+    private String cplxname;
+    private String zsfsname;
+    private String jdname;
 
     @Override
     protected int setLayout() {
@@ -215,14 +235,12 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         });
     }
 
-    private String zsywlxname;
-    private String cplxname;
-    private String zsfsname;
-    private String jdname;
-
     @Override
     protected void setData() {
         cpinfo = (cpInfo.DataBean.ContentBean) getIntent().getSerializableExtra("cpinfo");
+//        String ypt = cpinfo.getYpt();
+//        String xctp = cpinfo.getXctp();
+//        String xcsp = cpinfo.getXcsp();
 
         cplxname = getIntent().getStringExtra("cplxname");
         zsfsname = getIntent().getStringExtra("zsfsname");
@@ -230,9 +248,30 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         jdname = getIntent().getStringExtra("jdname");
 
         if(cpinfo != null){
+            String ypt = cpinfo.getYpt();
+            if(ypt != null && !"".equals(ypt)){
+                fl_ypt.setVisibility(View.VISIBLE);
+                recycler.setVisibility(View.GONE);
+                ShowImageUtils.LoadImage(this,ApiConstants.ImageURLROOT+cpinfo.getYpt().replace("\\","/"), iv_ypt_screenshot);
+            }
+
+            String xct = cpinfo.getXctp();
+            if(xct != null && !"".equals(xct)){
+                fl_xct.setVisibility(View.VISIBLE);
+                recycler_xctp.setVisibility(View.GONE);
+                ShowImageUtils.LoadImage(this,ApiConstants.ImageURLROOT+cpinfo.getXctp().replace("\\","/"), iv_xct_screenshot);
+            }
+
+            String xcsp = cpinfo.getXcsp();
+            if(xcsp != null && !"".equals(xcsp)){
+                delete.setVisibility(View.VISIBLE);
+                Log.e("TAG","视频地址："+xcsp);
+                iv_video_screenshot.setBackgroundColor(Color.BLACK);
+
+            }
             txtTitle.setText("产品信息修改");
             btn_submit.setText("保存");
-//            recycler.setVisibility(View.GONE);
+//          recycler.setVisibility(View.GONE);
 
             edt_cpname.setText(cpinfo.getCpmc());
             edt_cppp.setText(cpinfo.getCppp());
@@ -260,20 +299,35 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         }
     }
 
-
     private boolean Edit(EditText view){
         return ("".equals(view.getText().toString()))? true:false;
     }
 
-
-    @OnClick({R.id.iv_btn,R.id.iv_video_screenshot,R.id.btnback,R.id.layout_cptype,R.id.layout_zsfs,R.id.layout_zsywlx,R.id.btn_submit,R.id.layout_work_naturejob})
+    @OnClick({R.id.delete,R.id.ypt_delete,R.id.xct_delete,R.id.iv_btn,R.id.iv_video_screenshot,R.id.btnback,R.id.layout_cptype,R.id.layout_zsfs,R.id.layout_zsywlx,R.id.btn_submit,R.id.layout_work_naturejob})
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.delete:
+                delete.setVisibility(View.GONE);
+
+                if(cpinfo != null){
+                    iv_video_screenshot.setBackgroundColor(Color.WHITE);
+                }else {
+                    videopath = null;
+                    iv_video_screenshot.setImageBitmap(null);
+                }
+
+//                deleteFile();
+                break;
+            case R.id.ypt_delete:
+                fl_ypt.setVisibility(View.GONE);
+                recycler.setVisibility(View.VISIBLE);
+                break;
+            case R.id.xct_delete:
+                fl_xct.setVisibility(View.GONE);
+                recycler_xctp.setVisibility(View.VISIBLE);
+                break;
             case R.id.btnback:
-
-
                 finish();
-
                 break;
             case R.id.btn_submit:
 
@@ -284,24 +338,40 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     T("请将信息填写完整");
 
                 } else {
-
-
                     Log.e("TAG","添加信息");
 
+                    if(cpinfo != null){
+                        String ypt = cpinfo.getYpt();
+                        if(path != null){
+                            btn_submit.setEnabled(false);
+
+                            new MyAsyncTask().execute(1);
+                        }else {
+
+                            if(ypt != null && !"".equals(ypt)){
+                                btn_submit.setEnabled(false);
+
+                                new MyAsyncTask().execute(1);
+                            }else {
+                                T("请录入产品样品图");
+                            }
+
+                        }
+
+
+                    }else {
                         //样品图上传
                         if (path != null) {
                             btn_submit.setEnabled(false);
 
-                           new MyAsyncTask().execute(1);
+                            new MyAsyncTask().execute(1);
 
 //                            addData();//上传产品信息
                         } else {
+
                             T("请录入产品样品图");
                         }
-
-
-
-
+                    }
                 }
 
                 break;
@@ -362,12 +432,10 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
             case R.id.iv_video_screenshot:
 
                 if(videopath != null){
-
                     Bundle bundle = new Bundle();
                     bundle.putString("path",videopath);
                     toClass(this,VideoPlayerActivity.class,bundle);
                 }else {
-
 //                  //视频录制
                   toClass(this,VideoRecorderActivity.class,null,REQUESTCODE);
                 }
@@ -423,8 +491,8 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
             jsonObject.put("ewmsl", edtewmdynum);
             jsonObject.put("cpms", edtcpms);
 
-            jsonObject.put("ypt", base64File);
-            jsonObject.put("yptName", cpname+".jpg");
+            jsonObject.put("ypt", base64File!= null? base64File:"");
+            jsonObject.put("yptName", base64File!= null? cpname+".jpg":"");
 
             jsonObject.put("xcsp", Xcspbase64File != null? Xcspbase64File:"");
             jsonObject.put("xcspName", Xcspbase64File != null? cpname+"宣传视频.mp4":"");
@@ -609,15 +677,12 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     break;
 
                 case JDCODE:
-
                     if(data != null){
                         String dlsmc = data.getStringExtra("dlsmc");
                         jdCode = data.getStringExtra("dlsid");
-
                         tv_work_naturejob.setText(dlsmc);
                     }
                     break;
-
 
                 case REQUESTCODE://视频
                     videopath = data.getStringExtra("path");
@@ -629,7 +694,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
             }
         }
     }
-
     private void setImage(String videoUri){
         if (!TextUtils.isEmpty(videoUri)) {
 
@@ -705,6 +769,8 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
 
             try {
                 base64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(path);
+                Log.e("TAG","path="+path);
+                Log.e("TAG","base64File="+base64File);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -712,6 +778,8 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
             //宣传图上传
             try {
                 Xctbase64File = customer.tcrj.com.zsproject.Media.Utils.encodeBase64File(Xctpath);
+                Log.e("TAG","Xctpath="+Xctpath);
+                Log.e("TAG","Xctbase64File="+Xctbase64File);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -723,7 +791,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                 e.printStackTrace();
             }
 
-
             return base64File;
         }
         /**
@@ -734,11 +801,8 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         protected void onPostExecute(String result) {
             Log.e("TAG","线程结束"+result);
 
-            String time = new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss",
-                    Locale.getDefault()).format(System.currentTimeMillis());
-            if(result != null){
-                addData();
-            }
+            addData();
+
         }
 
         /**

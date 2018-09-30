@@ -63,14 +63,13 @@ public class SCLCwriteActivity extends BaseActivity {
     @Override
     protected void setView() {
         num.setVisibility(View.VISIBLE);
-        num.setText("流程模板");
+        num.setText("加工流程");
         productId = getIntent().getStringExtra("productId");
         position = (cpSCLCinfo.DataBean.ContentBean) getIntent().getSerializableExtra("ContentBean");
 
         if(productId != null){
             isadd = true;
         }else{
-
             HtmlTextView htmlTextView = new HtmlTextView(this);
             htmlTextView.setHtml(position.getDescription(),
                     new HtmlHttpImageGetter(htmlTextView));
@@ -92,7 +91,7 @@ public class SCLCwriteActivity extends BaseActivity {
     }
 
 
-    private void tofinish() {
+    private void tofinish(String id) {
         // TODO Auto-generated method stub
         Intent intent = new Intent();
         // 获取用户计算后的结果
@@ -103,10 +102,14 @@ public class SCLCwriteActivity extends BaseActivity {
             cpSCLCinfo.DataBean.ContentBean contentBean = new cpSCLCinfo.DataBean.ContentBean();
             contentBean.setName(cpname);
             contentBean.setDescription(three);
+            contentBean.setId(id == null? position.getId():id);
+            Log.e("TAG","生产流程id"+id);
+        if(position != null){
+            Log.e("TAG","生产流程position.getId()"+position.getId());
+        }
 
             intent.putExtra("three", contentBean);
-
-//            intent.putExtra("three", three); //将计算的值回传回去
+//          intent.putExtra("three", three); //将计算的值回传回去
             //通过intent对象返回结果，必须要调用一个setResult方法，
 
         if(isadd){
@@ -116,7 +119,7 @@ public class SCLCwriteActivity extends BaseActivity {
         }
 
 
-            finish(); //结束当前的activity的生命周期
+        finish(); //结束当前的activity的生命周期
 
 
     }
@@ -190,7 +193,7 @@ public class SCLCwriteActivity extends BaseActivity {
                         if(response.getErrorcode().equals("9999")){
                             Log.e("TAG","成功");
 
-                            tofinish();
+                            tofinish(null);
 
                         }
                     }
@@ -236,7 +239,7 @@ public class SCLCwriteActivity extends BaseActivity {
                         if(response.getErrorcode().equals("9999")){
                             Log.e("TAG","成功");
 
-                            tofinish();
+                            tofinish(response.getData());
 
                         }
                     }

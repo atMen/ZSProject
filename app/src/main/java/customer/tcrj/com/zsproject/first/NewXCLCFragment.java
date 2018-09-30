@@ -97,7 +97,7 @@ public class NewXCLCFragment extends BaseFragment implements BaseQuickAdapter.On
 
     private void initview() {
 
-        if(!"1".equals(status)){
+        if(!"1".equals(status) && !"4".equals(status)){
             btn_add.setVisibility(View.GONE);
         }
 
@@ -302,8 +302,12 @@ public class NewXCLCFragment extends BaseFragment implements BaseQuickAdapter.On
 
             case R.id.btn_tj:
 
-//                toClass(mContext,DialogmsgActivity.class,null,REQUESTCODE);
+//              toClass(mContext,DialogmsgActivity.class,null,REQUESTCODE);
                 break;
+
+            default:
+                break;
+
 
 
         }

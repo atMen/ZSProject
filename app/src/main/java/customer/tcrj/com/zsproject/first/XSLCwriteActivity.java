@@ -159,7 +159,7 @@ public class XSLCwriteActivity extends BaseActivity {
         mMyOkhttp.post()
                 .url(ApiConstants.addProductApi)
                 .jsonParams(jsonObject.toString())
-                .enqueue(new GsonResponseHandler<xslcCxInfo>() {
+                .enqueue(new GsonResponseHandler<loginInfo>() {
                     @Override
                     public void onFailure(int statusCode, String error_msg) {
 
@@ -170,13 +170,13 @@ public class XSLCwriteActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onSuccess(int statusCode, xslcCxInfo response) {
+                    public void onSuccess(int statusCode, loginInfo response) {
                         T(response.getMessage());
                         hideLoadingDialog();
                         if(response.getErrorcode().equals("9999")){
 
 
-                            tofinish();
+                            tofinish(response.getData());
 
                         }else if(response.getErrorcode().equals("204")){
                             Utils.toLogin(XSLCwriteActivity.this);
@@ -186,7 +186,7 @@ public class XSLCwriteActivity extends BaseActivity {
                 });
     }
 
-    private void tofinish() {
+    private void tofinish(String id) {
         // TODO Auto-generated method stub
         Intent intent = new Intent();
         xslcCxInfo.DataBean contentBean = new xslcCxInfo.DataBean();
@@ -194,10 +194,11 @@ public class XSLCwriteActivity extends BaseActivity {
         contentBean.setDlsmc(dlsName);
         contentBean.setQdmc(qdName);
         contentBean.setCpmc(cpmc);
+        contentBean.setId(id);
 
         intent.putExtra("three", contentBean);
 
-//            intent.putExtra("three", three); //将计算的值回传回去
+        //intent.putExtra("three", three); //将计算的值回传回去
         //通过intent对象返回结果，必须要调用一个setResult方法，
 
 

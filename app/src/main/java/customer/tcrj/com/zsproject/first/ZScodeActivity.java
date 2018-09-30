@@ -234,7 +234,9 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
             canPull = true;
             pageNum++;
             detailAdapter.setNewData(response);
-            mPtrFrameLayout.refreshComplete();
+            if(mPtrFrameLayout != null){
+                mPtrFrameLayout.refreshComplete();
+            }
             showSuccess();
             disableLoadMoreIfNotFullPage(mRecyclerView,response.size());
         }

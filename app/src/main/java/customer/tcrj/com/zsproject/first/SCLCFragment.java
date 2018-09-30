@@ -97,7 +97,7 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
 
     private void initview() {
 
-        if(!"1".equals(status)){
+        if(!"1".equals(status) && !"4".equals(status)){
             btn_add.setVisibility(View.GONE);
         }
 
@@ -116,7 +116,6 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
             public void onRefreshBegin(PtrFrameLayout frame) {
                 pageNum = 1;
                 getData(pageNum);
-
             }
         });
         beanList = new ArrayList<>();

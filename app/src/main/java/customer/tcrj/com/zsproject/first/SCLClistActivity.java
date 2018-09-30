@@ -216,7 +216,9 @@ public class SCLClistActivity extends BaseActivity implements View.OnClickListen
             canPull = true;
             pageNum++;
             detailAdapter.setNewData(response);
-            mPtrFrameLayout.refreshComplete();
+            if(mPtrFrameLayout != null){
+                mPtrFrameLayout.refreshComplete();
+            }
             showSuccess();
             disableLoadMoreIfNotFullPage(mRecyclerView,response.size());
         }

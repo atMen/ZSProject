@@ -47,7 +47,7 @@ public class sclcAdapter extends BaseQuickAdapter<cpSCLCinfo.DataBean.ContentBea
     @Override
     protected void convert(final BaseViewHolder helper, final cpSCLCinfo.DataBean.ContentBean item) {
         helper.setText(R.id.cpname, "名称："+item.getName());
-        helper.setText(R.id.cptime, item.getSort());
+//        helper.setText(R.id.cptime, item.getSort());
 
 
 
@@ -67,7 +67,7 @@ public class sclcAdapter extends BaseQuickAdapter<cpSCLCinfo.DataBean.ContentBea
 //        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
 //        webView.loadData(item.getDescription(), "text/html; charset=UTF-8", null);
 
-        if(!"1".equals(status)){
+        if(!"1".equals(status) && !"4".equals(status)){
             remo.setVisibility(View.GONE);
             xg.setVisibility(View.GONE);
         }

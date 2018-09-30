@@ -1,6 +1,7 @@
 package customer.tcrj.com.zsproject.mine;
 
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,9 +17,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import butterknife.BindView;
+import customer.tcrj.com.zsproject.LoginActivity;
 import customer.tcrj.com.zsproject.MyApp;
 import customer.tcrj.com.zsproject.R;
 import customer.tcrj.com.zsproject.Utils.ACache;
+import customer.tcrj.com.zsproject.Utils.AppManager;
 import customer.tcrj.com.zsproject.base.BaseActivity;
 import customer.tcrj.com.zsproject.bean.loginInfo;
 import customer.tcrj.com.zsproject.dialog.SweetAlertDialog;
@@ -107,9 +110,21 @@ public class MdifyPswActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void onSuccess(int statusCode, loginInfo response) {
                         T(response.getMessage());
-                        finish();
+                        sureZX();
                     }
                 });
+    }
+
+    private void sureZX() {
+        AppManager.getAppManager().finishAllActivity();
+        ACache.get(this).clear();
+        goLogin();
+    }
+
+    private void goLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     //信息输入是否符合规格

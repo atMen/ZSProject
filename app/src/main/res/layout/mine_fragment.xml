@@ -29,10 +29,11 @@
             />
 
         <TextView
+            android:id="@+id/username"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="账号："
             android:gravity="center_horizontal"
             android:textSize="@dimen/font_size_14"
             android:textColor="@color/white"
@@ -92,7 +93,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="检查新版本"
+                    android:text="版本更新"
                     android:drawableLeft="@drawable/updata"
                     android:gravity="center"
                     android:drawablePadding="10dp"
@@ -125,7 +126,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="退出登录"
+                    android:text="退出应用"
                     android:drawableLeft="@drawable/zxdl"
                     android:gravity="center"
                     android:drawablePadding="10dp"

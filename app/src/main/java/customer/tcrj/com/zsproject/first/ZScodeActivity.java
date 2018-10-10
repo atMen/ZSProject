@@ -358,20 +358,21 @@ public class ZScodeActivity extends BaseActivity implements BaseQuickAdapter.OnI
         final SweetAlertDialog sad = new SweetAlertDialog(this);
         sad.setTitleText("提交追溯码申请");
         sad.setContentText("您确定要提交吗？");
-        sad.setConfirmText("确定");
-        sad.setCancelText("取消");
+        sad.setConfirmText("取消");
+        sad.setCancelText("确定");
         sad.setCanceledOnTouchOutside(true);
         sad.setCancelable(true);
         sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sure(s);
                 sad.dismiss();
             }
         });
         sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                sure(s);
+
                 sad.dismiss();
             }
         });

@@ -220,7 +220,7 @@ public class SCLCMBActivity extends BaseActivity implements View.OnClickListener
         } else {
 
             dlsmc = response.get(0).getName();
-            dlsid = response.get(0).getId();
+            dlsid = response.get(0).getDescription();
             canPull = true;
             pageNum++;
             detailAdapter.setNewData(response);

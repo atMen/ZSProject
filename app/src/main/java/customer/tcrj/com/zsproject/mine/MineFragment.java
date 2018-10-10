@@ -36,6 +36,9 @@ public class MineFragment extends BaseFragment {
     @BindView(R.id.rl_updata)
     RelativeLayout rl_updata;
 
+    @BindView(R.id.username)
+    TextView username;
+
     @Override
     protected int setLayout() {
         return R.layout.mine_fragment;
@@ -45,7 +48,10 @@ public class MineFragment extends BaseFragment {
     protected void setView() {}
 
     @Override
-    protected void setData() {}
+    protected void setData() {
+        String name = ACache.get(mContext).getAsString("username");
+        username.setText("账号："+name);
+    }
 
     private void showUpdateDialog() {
 

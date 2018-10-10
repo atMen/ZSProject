@@ -113,7 +113,7 @@ public class LoginActivity extends BaseActivity {
                             T("登录成功");
                             Log.e("TAG","成功");
                             ACache.get(LoginActivity.this).put("psw",psw);
-                            ToCache(response.getData());
+                            ToCache(user,response.getData());
                             toClass(LoginActivity.this,MainActivity.class);
                             finish();
                         }else {
@@ -125,10 +125,10 @@ public class LoginActivity extends BaseActivity {
 
 
     //缓存数据
-    private void ToCache(String key) {
+    private void ToCache(String data, String key) {
         Log.e("TAG","token:"+key);
         ACache.get(this).put("token",key);
-
+        ACache.get(this).put("username",data);
     }
 
 

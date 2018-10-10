@@ -98,7 +98,7 @@ public class CPListInfoActivity extends BaseActivity {
     protected void setView() {
         mMyOkhttp = MyApp.getInstance().getMyOkHttp();
         token = ACache.get(this).getAsString("token");
-        txtTitle.setText("产品详情信息");
+        txtTitle.setText("产品信息详情");
 
 
     }
@@ -137,7 +137,7 @@ public class CPListInfoActivity extends BaseActivity {
 
 
 
-
+    String videopath =null;
     @OnClick({R.id.btnback,R.id.num,R.id.ll_xcsp})
     public void onClick(View v) {
 
@@ -148,7 +148,10 @@ public class CPListInfoActivity extends BaseActivity {
 
             case R.id.ll_xcsp:
 
-                String videopath = ApiConstants.ImageURLROOT + cpinfo.getXcsp().replace("\\", "/");
+                if(videopath == null){
+                    videopath = ApiConstants.YPTURLROOT + cpinfo.getXcsp().replace("\\", "/");
+                }
+
                 Bundle videobundle = new Bundle();
                 videobundle.putString("cover",videopath);
                 toClass(this,CpInfoVideoViewActivity.class,videobundle);
@@ -409,6 +412,7 @@ public class CPListInfoActivity extends BaseActivity {
 
             String xcsp = cpinfo.getXcsp();
             if(xcsp != null && !"".equals(xcsp)){
+                videopath = ApiConstants.YPTURLROOT + xcsp.replace("\\", "/");
                 ll_xcsp.setVisibility(View.VISIBLE);
                 Log.e("TAG","视频地址："+xcsp);
 

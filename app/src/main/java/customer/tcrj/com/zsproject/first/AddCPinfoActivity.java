@@ -503,7 +503,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                 jsonObject.put("id", cpinfo.getId());
             }
 
-
         } catch (JSONException e) {
             Log.e("TAG","e"+e.getMessage());
             e.printStackTrace();

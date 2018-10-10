@@ -367,13 +367,14 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
         final SweetAlertDialog sad = new SweetAlertDialog(getActivity());
         sad.setTitleText("删除此流程");
         sad.setContentText("您确定要进行删除操作吗？");
-        sad.setConfirmText("确定");
-        sad.setCancelText("取消");
+        sad.setConfirmText("取消");
+        sad.setCancelText("确定");
         sad.setCanceledOnTouchOutside(true);
         sad.setCancelable(true);
         sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sureRemove(contentBean,position);
                 sad.dismiss();
 
 
@@ -382,7 +383,6 @@ public class SCLCFragment extends BaseFragment implements BaseQuickAdapter.OnIte
         sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
             @Override
             public void onClick(SweetAlertDialog sweetAlertDialog) {
-                sureRemove(contentBean,position);
                 sad.dismiss();
 
             }

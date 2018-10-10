@@ -66,7 +66,7 @@ public class SCLClistActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void setView() {
 
-        txtTitle.setText("产品信息列表");
+        txtTitle.setText("产销流程录入");
         btn_add.setVisibility(View.GONE);
 
         mMyOkhttp = MyApp.getInstance().getMyOkHttp();

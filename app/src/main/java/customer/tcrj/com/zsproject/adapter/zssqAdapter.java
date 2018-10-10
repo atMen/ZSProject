@@ -49,6 +49,13 @@ public class zssqAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
         helper.setText(R.id.spjg_pp, item.getCppp());
         helper.setText(R.id.gg, item.getCpbcgg());
         helper.setText(R.id.simple_text, item.getEwmsl()+"份");
+
+        String timestamp = item.getTimestamp();
+        String substring = "";
+        if(timestamp != null){substring = timestamp.substring(0, 10);}
+        helper.setText(R.id.simple_time, substring);
+
+
         TextView remo = helper.getView(R.id.simple_remo);
         CheckBox view = helper.getView(R.id.checkbox);
 

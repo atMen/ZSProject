@@ -46,7 +46,11 @@ public class newXslcAdapter extends BaseQuickAdapter<xslcCxInfo.DataBean, BaseVi
     @Override
     protected void convert(final BaseViewHolder helper, final xslcCxInfo.DataBean item) {
         helper.setText(R.id.cpname, "产品名称："+item.getCpmc());
-        helper.setText(R.id.simple_time, item.getChsj());
+
+        String timestamp = item.getChsj();
+        String substring = "";
+        if(timestamp != null){substring = timestamp.substring(0, 10);}
+        helper.setText(R.id.simple_time, substring);
         helper.setText(R.id.tv_dls, item.getDlsmc());
         helper.setText(R.id.tv_xsqd, item.getQdmc());
 

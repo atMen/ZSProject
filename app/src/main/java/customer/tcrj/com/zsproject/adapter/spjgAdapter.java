@@ -61,7 +61,11 @@ public class spjgAdapter extends BaseQuickAdapter<cpInfo.DataBean.ContentBean, B
         helper.setText(R.id.spjg_pp, item.getCppp());
         helper.setText(R.id.spjg_gg, item.getCpbcgg()+item.getCpbcggdw());
         helper.setText(R.id.spjg_num, item.getEwmsl()+"份");
-        helper.setText(R.id.simple_time,item.getTimestamp());
+
+        String timestamp = item.getTimestamp();
+        String substring = "";
+        if(timestamp != null){substring = timestamp.substring(0, 10);}
+        helper.setText(R.id.simple_time, substring);
     }
 
 }

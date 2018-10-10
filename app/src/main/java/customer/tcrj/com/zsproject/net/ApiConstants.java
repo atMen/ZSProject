@@ -10,6 +10,7 @@ public class ApiConstants {
 
     //http://192.168.20.51:8888/traceability/personRest/login
     //外网  221.11.18.88  traceability
+
     private static final String URLROOT = "http://221.11.18.88:9999/";
     public static final String ImageURLROOT = "http://221.11.18.88:9999/";//回测
     public static final String YPTURLROOT = "http://221.11.18.88:9999/web.files";//回测
@@ -22,11 +23,11 @@ public class ApiConstants {
      */
     public static final String uploadfileApi = URLROOT+"companyRest/addCompanyResource";
 
-
     /**
      * 产品销售流程查询
      */
     public static final String xslcInfoApi = URLROOT+"productRest/findAllProductChuhuo";
+
     /**
      * 代理商数据
      */

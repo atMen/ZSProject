@@ -105,7 +105,8 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 pageNum = 1;
-                getData(pageNum,"");
+                String s = edt_search_result.getText().toString();
+                getData(pageNum,s);
 
             }
         });
@@ -124,7 +125,8 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
             @Override
             public void onLoadMoreRequested() {
                 Log.e("TAG","点击重新加载数据");
-                getData(pageNum,"");
+                String s = edt_search_result.getText().toString();
+                getData(pageNum,s);
             }
         }, mRecyclerView);
 

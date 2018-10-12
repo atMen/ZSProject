@@ -57,6 +57,7 @@ import customer.tcrj.com.zsproject.bean.jdInfo;
 import customer.tcrj.com.zsproject.dialog.DialogLeaveApply;
 import customer.tcrj.com.zsproject.net.ApiConstants;
 import customer.tcrj.com.zsproject.resources.ImageActivity;
+import customer.tcrj.com.zsproject.videoview.CpInfoVideoViewActivity;
 import customer.tcrj.com.zsproject.widget.FullyGridLayoutManager;
 
 public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListener {
@@ -143,6 +144,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     private String path = null;
     private String Xctpath = null;
     private String videopath = null;
+    private String videoUrl = null;
     private Bitmap thumbnail;
     private String zsywlxname;
     private String cplxname;
@@ -247,7 +249,13 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
         zsywlxname = getIntent().getStringExtra("zsywlxname");
         jdname = getIntent().getStringExtra("jdname");
 
+
         if(cpinfo != null){
+
+//            String xcsp = cpinfo.getXcsp();
+//
+//            videopath = ApiConstants.YPTURLROOT +.replace("\\", "/");
+
             String ypt = cpinfo.getYpt();
             if(ypt != null && !"".equals(ypt)){
                 fl_ypt.setVisibility(View.VISIBLE);
@@ -262,10 +270,10 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                 ShowImageUtils.LoadImage(this,ApiConstants.ImageURLROOT+cpinfo.getXctp().replace("\\","/"), iv_xct_screenshot);
             }
 
-            String xcsp = cpinfo.getXcsp();
-            if(xcsp != null && !"".equals(xcsp)){
+            videoUrl = cpinfo.getXcsp();
+            if(videoUrl != null && !"".equals(videoUrl)){
                 delete.setVisibility(View.VISIBLE);
-                Log.e("TAG","视频地址："+xcsp);
+                Log.e("TAG","视频地址："+videoUrl);
                 iv_video_screenshot.setBackgroundColor(Color.BLACK);
 
             }
@@ -310,6 +318,7 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                 delete.setVisibility(View.GONE);
 
                 if(cpinfo != null){
+                    videoUrl = null;
                     iv_video_screenshot.setBackgroundColor(Color.WHITE);
                 }else {
                     videopath = null;
@@ -431,14 +440,22 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
             case R.id.iv_btn:
             case R.id.iv_video_screenshot:
 
-                if(videopath != null){
-                    Bundle bundle = new Bundle();
-                    bundle.putString("path",videopath);
-                    toClass(this,VideoPlayerActivity.class,bundle);
+                if(videoUrl != null){
+                    String url = ApiConstants.ImageURLROOT + videoUrl.replace("\\", "/");
+                    Bundle videobundle = new Bundle();
+                    videobundle.putString("cover",url);
+                    toClass(this,CpInfoVideoViewActivity.class,videobundle);
                 }else {
-//                  //视频录制
-                  toClass(this,VideoRecorderActivity.class,null,REQUESTCODE);
+                    if(videopath != null){
+                        Bundle bundle = new Bundle();
+                        bundle.putString("path",videopath);
+                        toClass(this,VideoPlayerActivity.class,bundle);
+                    }else {
+//                //视频录制
+                        toClass(this,VideoRecorderActivity.class,null,REQUESTCODE);
+                    }
                 }
+
 
                 break;
 

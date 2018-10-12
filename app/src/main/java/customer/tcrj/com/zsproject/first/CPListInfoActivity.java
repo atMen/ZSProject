@@ -159,8 +159,6 @@ public class CPListInfoActivity extends BaseActivity {
 
             case R.id.btnback:
 
-
-
                 finish();
                 break;
 

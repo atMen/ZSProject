@@ -50,20 +50,14 @@ public class FirstFragment extends BaseFragment {
         switch (v.getId()){
             case R.id.ll_cpxx:
                 toClass(mContext,CPinfoActivity.class);//产品信息录入
-
                 break;
-
             case R.id.ll_cxlc:
 //                toClass(mContext,SCLCLRActivity.class);//产销流程
-
                 toClass(mContext,SCLClistActivity.class);//产销流程
-
                 break;
-
             case R.id.ll_zsmsq:
                 toClass(mContext,ZScodeActivity.class);//追溯码申请
                 break;
-
             case R.id.ll_spjg:
                 toClass(mContext,SPjgActivity.class);//审批结果查询
                 break;

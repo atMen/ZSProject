@@ -1,5 +1,6 @@
 package customer.tcrj.com.zsproject.first;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -27,6 +28,7 @@ public class ShenPiXiangQingActivity extends BaseActivity {
     ImageView iv_ewm;
 
     private cpInfo.DataBean.ContentBean cpinfo;
+
     @Override
     protected int setLayout() {
         return R.layout.activity_shen_pi_xiang_qing;
@@ -46,6 +48,7 @@ public class ShenPiXiangQingActivity extends BaseActivity {
 
     @Override
     protected void setData() {
+        Log.e("TAG","二维码url："+ApiConstants.EWMURLROOT+cpinfo.getId());
         Bitmap mBitmap = QRCodeUtil.createQRCodeBitmap(ApiConstants.EWMURLROOT+cpinfo.getId(), 480, 480);
         iv_ewm.setImageBitmap(mBitmap);
     }

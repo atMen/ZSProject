@@ -37,12 +37,14 @@ public class ShowImageUtils {
         RequestOptions options = new RequestOptions()
                 .placeholder(R.drawable.ic_placeholder)
                 .error(R.drawable.ic_placeholder)
+
                 .centerCrop()
                 ;
         Glide.with(context)
                 .load(url)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .apply(options)
+
                 .into(imgeview);
     }
 

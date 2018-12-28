@@ -284,8 +284,6 @@ public class SPjgActivity extends BaseActivity implements BaseQuickAdapter.OnIte
                 getData(1,s);
 
                 break;
-
-
             default:
                 break;
 

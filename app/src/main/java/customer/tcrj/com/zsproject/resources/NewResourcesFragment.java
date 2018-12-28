@@ -250,12 +250,10 @@ public class NewResourcesFragment extends BaseFragment implements BaseQuickAdapt
         }
     }
 
-
     @Override
     protected void setData() {
         getData(1,"");
     }
-
 
     @OnClick({R.id.tv_search,R.id.tv_add})
     public void onClick(View v) {
@@ -288,7 +286,6 @@ public class NewResourcesFragment extends BaseFragment implements BaseQuickAdapt
         }else if("10401".equals(cllx)){
             toClass(mContext,ResourcesInfoActivity.class,bundle,RESOURCESCODE);
         }
-
     }
 
 
@@ -297,8 +294,8 @@ public class NewResourcesFragment extends BaseFragment implements BaseQuickAdapt
         super.onActivityResult(requestCode, resultCode, data);
         Log.e("TAG","onActivityResult");
         if (resultCode == RESULT_OK) {
-            switch (requestCode) {
 
+            switch (requestCode) {
                 case RESOURCESCODE:
                     Log.e("TAG","onActivityResult  getData");
                     pageNum = 1;
@@ -308,6 +305,7 @@ public class NewResourcesFragment extends BaseFragment implements BaseQuickAdapt
                 default:
                     break;
             }
+
         }
     }
 

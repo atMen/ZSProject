@@ -19,11 +19,14 @@ public class ApiConstants {
 
     public static final String EWMURLROOT = "http://demo.tcrj.com.cn:8013/traceability/front/product/showProduct.chtml?productId=";
 
-//    private static final String URLROOT = "http://221.11.18.88:9999/";
-//    public static final String ImageURLROOT = "http://221.11.18.88:9999/";//回测
-//    public static final String YPTURLROOT = "http://221.11.18.88:9999/web.files";//回测
+//    http://www.ascpzs.com
+//    http://221.11.18.88:9999/
+
+//    private static final String URLROOT = "http://www.ascpzs.com:9999/";
+//    public static final String ImageURLROOT = "http://www.ascpzs.com:9999/";//回测
+//    public static final String YPTURLROOT = "http://www.ascpzs.com:9999/web.files";//回测
 //
-//    public static final String EWMURLROOT = "http://221.11.18.88:9999/front/product/showProduct.chtml?productId=";
+//    public static final String EWMURLROOT = "http://www.ascpzs.com:9999/front/product/showProduct.chtml?productId=";
 
 
     /**

@@ -1,5 +1,6 @@
 package customer.tcrj.com.zsproject.first;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,11 +20,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.permissions.RxPermissions;
+import com.luck.picture.lib.tools.PictureFileUtils;
 import com.tsy.sdk.myokhttp.MyOkHttp;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 
@@ -59,6 +63,8 @@ import customer.tcrj.com.zsproject.net.ApiConstants;
 import customer.tcrj.com.zsproject.resources.ImageActivity;
 import customer.tcrj.com.zsproject.videoview.CpInfoVideoViewActivity;
 import customer.tcrj.com.zsproject.widget.FullyGridLayoutManager;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListener {
 
@@ -165,6 +171,32 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     }
 
     private void initPic() {
+
+        // 清空图片缓存，包括裁剪、压缩后的图片 注意:必须要在上传完成后调用 必须要获取权限
+        RxPermissions permissions = new RxPermissions(this);
+        permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Observer<Boolean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onNext(Boolean aBoolean) {
+                if (aBoolean) {
+                    PictureFileUtils.deleteCacheDirFile(AddCPinfoActivity.this);
+                } else {
+                    Toast.makeText(AddCPinfoActivity.this,
+                            getString(R.string.picture_jurisdiction), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
         themeId = R.style.picture_default_style;
         seYPT();
         seXCT();
@@ -456,7 +488,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
                     }
                 }
 
-
                 break;
 
             default:
@@ -476,7 +507,6 @@ public class AddCPinfoActivity extends BaseActivity implements View.OnTouchListe
     String Xcspbase64File = null;
 
     private void addData() {
-
 
 //        showLoadingDialog("正在保存数据...");
         String cpname = edt_cpname.getText().toString().trim();

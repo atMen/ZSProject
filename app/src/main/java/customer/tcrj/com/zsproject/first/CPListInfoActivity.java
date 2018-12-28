@@ -78,8 +78,6 @@ public class CPListInfoActivity extends BaseActivity {
     LinearLayout ll_xcsp;
 
 
-
-
     @BindView(R.id.txtTitle)
     TextView txtTitle;
     @BindView(R.id.btnback)
@@ -234,8 +232,6 @@ public class CPListInfoActivity extends BaseActivity {
 
                             Utils.toLogin(CPListInfoActivity.this);
                         }
-
-
                     }
                 });
 
@@ -275,7 +271,10 @@ public class CPListInfoActivity extends BaseActivity {
                             dicBean.DataBean data = response.getData();
                             if(data != null){
                                 cplxname = response.getData().getName();
-                                tv06.setText(response.getData().getName());
+                                if(tv06 != null){
+                                    tv06.setText(response.getData().getName());
+                                }
+
                             }
 
 
@@ -321,7 +320,10 @@ public class CPListInfoActivity extends BaseActivity {
                             dicBean.DataBean data = response.getData();
                             if(data != null){
                                 zsfsname = response.getData().getName();
-                                tv07.setText(response.getData().getName());
+                                if(tv07 != null){
+                                    tv07.setText(response.getData().getName());
+                                }
+
                             }
 
 
@@ -367,10 +369,10 @@ public class CPListInfoActivity extends BaseActivity {
                             dicBean.DataBean data = response.getData();
                             if(data != null){
                                 zsywlxname = response.getData().getName();
-                                tv08.setText(response.getData().getName());
+                                if(tv08 != null){
+                                    tv08.setText(response.getData().getName());
+                                }
                             }
-
-
                         }else if(response.getErrorcode().equals("204")){
 
                             Utils.toLogin(CPListInfoActivity.this);

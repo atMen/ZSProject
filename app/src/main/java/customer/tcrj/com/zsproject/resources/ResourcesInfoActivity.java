@@ -123,6 +123,7 @@ public class ResourcesInfoActivity extends BaseActivity {
 /*		Intent intent = new Intent();
         intent.setClass(mContext, IsDownLoad.class);
 		mContext.startActivity(intent);*/
+
         final SweetAlertDialog sad = new SweetAlertDialog(this);
         sad.setTitleText("删除此流程");
         sad.setContentText("您确定要进行删除操作吗？");
